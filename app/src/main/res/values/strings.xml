@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Staj Takip</string>
+    <string name="login">Giriş Yap</string>
 </resources>
