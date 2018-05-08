@@ -7,6 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
+import yusufcakal.com.stajtakip.webservices.LoginService;
+
 public class MainActivity extends AppCompatActivity 
     implements View.OnClickListener{
 
@@ -33,8 +37,13 @@ public class MainActivity extends AppCompatActivity
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 
-
+        loginService(email, password);
 
     }
+
+    private void loginService(String email, String password){
+        LoginService loginService = new LoginService(this);
+    }
+
     
 }
