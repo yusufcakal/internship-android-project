@@ -5,11 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import org.json.JSONArray;
-
-import yusufcakal.com.stajtakip.webservices.LoginService;
+import yusufcakal.com.stajtakip.webservices.services.LoginService;
 
 public class MainActivity extends AppCompatActivity 
     implements View.OnClickListener{

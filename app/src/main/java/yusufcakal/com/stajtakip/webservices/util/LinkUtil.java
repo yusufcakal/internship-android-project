@@ -1,4 +1,4 @@
-package yusufcakal.com.stajtakip.webservices;
+package yusufcakal.com.stajtakip.webservices.util;
 
 /**
  * Created by Yusuf on 8.05.2018.

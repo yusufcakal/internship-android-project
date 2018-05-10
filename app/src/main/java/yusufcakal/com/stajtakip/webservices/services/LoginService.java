@@ -1,17 +1,19 @@
-package yusufcakal.com.stajtakip.webservices;
+package yusufcakal.com.stajtakip.webservices.services;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.*;
 import com.android.volley.Request;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
-import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
+
+import yusufcakal.com.stajtakip.User;
+import yusufcakal.com.stajtakip.webservices.interfaces.LoginListener;
+import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
+import yusufcakal.com.stajtakip.webservices.volley.VolleyClient;
 
 /**
  * Created by Yusuf on 8.05.2018.
@@ -24,7 +26,7 @@ public class LoginService {
     private String url = LinkUtil.loginUrl;
     private int requestMethod = Request.Method.POST;
 
-    public LoginService(final Context context) {
+    public LoginService(final Context context, final LoginListener loginListener, final User user) {
         requestQueue = VolleyClient.getInstance(context).getRequestQueue();
         this.context = context;
 
@@ -32,20 +34,20 @@ public class LoginService {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(context, response,Toast.LENGTH_LONG).show();
+                        loginListener.onSuccess(response);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, error.toString(),Toast.LENGTH_LONG).show();
+                        loginListener.onError(error);
                     }
                 }){
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("eposta", "eylmz058@gmail.com");
-                params.put("sifre", "deneme");
+                params.put("eposta", user.getEmail());
+                params.put("sifre", user.getPassword());
                 return params;
             }
 

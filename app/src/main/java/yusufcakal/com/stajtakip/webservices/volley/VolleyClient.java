@@ -1,4 +1,4 @@
-package yusufcakal.com.stajtakip.webservices;
+package yusufcakal.com.stajtakip.webservices.volley;
 
 import android.app.Application;
 import android.content.Context;
