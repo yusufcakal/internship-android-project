@@ -28,11 +28,13 @@ public class LoginService {
     private int requestMethod = Request.Method.POST;
     private LoginListener loginListener;
 
-    public LoginService(final Context context, final User user) {
-        requestQueue = VolleyClient.getInstance(context).getRequestQueue();
+    public LoginService(Context context, final LoginListener loginListener) {
         this.context = context;
-        loginListener = (LoginListener) context;
+        requestQueue = VolleyClient.getInstance(context).getRequestQueue();
+        this.loginListener = loginListener;
+    }
 
+    public void login(final User user){
         StringRequest stringRequest = new StringRequest(requestMethod, url,
                 new Response.Listener<String>() {
                     @Override
@@ -48,7 +50,7 @@ public class LoginService {
                 }){
             @Override
             protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String, String>();
+                Map<String,String> params = new HashMap<>();
                 params.put("eposta", user.getEmail());
                 params.put("sifre", user.getPassword());
                 return params;
@@ -57,7 +59,8 @@ public class LoginService {
         };
 
         requestQueue.add(stringRequest);
-
     }
+
+
 
 }

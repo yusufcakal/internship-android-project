@@ -1,15 +1,15 @@
 package yusufcakal.com.stajtakip;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import yusufcakal.com.stajtakip.presentation.LoginServiceImpl;
-import yusufcakal.com.stajtakip.webservices.services.LoginService;
+import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 
-public class MainActivity extends AppCompatActivity 
+public class MainActivity extends AppCompatActivity
     implements View.OnClickListener{
 
     private EditText etEmail, etPassword;
@@ -19,6 +19,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (SessionUtil.check(this))
+            startActivity(new Intent(this, DashboardActivity.class));
+
         setTitle(getResources().getText(R.string.login));
 
         etEmail = findViewById(R.id.etEmail);
@@ -45,7 +49,9 @@ public class MainActivity extends AppCompatActivity
 
     private void loginService(User user){
         LoginServiceImpl loginService = new LoginServiceImpl();
-        loginService.loginSucces(getApplicationContext(), user);
+        loginService.loginSucces(this, user);
+        if (SessionUtil.check(this))
+            startActivity(new Intent(this, DashboardActivity.class));
     }
 
     
