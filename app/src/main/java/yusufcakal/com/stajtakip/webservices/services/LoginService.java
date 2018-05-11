@@ -10,6 +10,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+import yusufcakal.com.stajtakip.MainActivity;
 import yusufcakal.com.stajtakip.User;
 import yusufcakal.com.stajtakip.webservices.interfaces.LoginListener;
 import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
@@ -25,10 +26,12 @@ public class LoginService {
     private Context context;
     private String url = LinkUtil.loginUrl;
     private int requestMethod = Request.Method.POST;
+    private LoginListener loginListener;
 
-    public LoginService(final Context context, final LoginListener loginListener, final User user) {
+    public LoginService(final Context context, final User user) {
         requestQueue = VolleyClient.getInstance(context).getRequestQueue();
         this.context = context;
+        loginListener = (LoginListener) context;
 
         StringRequest stringRequest = new StringRequest(requestMethod, url,
                 new Response.Listener<String>() {

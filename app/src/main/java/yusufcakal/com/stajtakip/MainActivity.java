@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import yusufcakal.com.stajtakip.presentation.LoginServiceImpl;
 import yusufcakal.com.stajtakip.webservices.services.LoginService;
 
 public class MainActivity extends AppCompatActivity 
@@ -34,12 +35,17 @@ public class MainActivity extends AppCompatActivity
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 
-        loginService(email, password);
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+
+        loginService(user);
 
     }
 
-    private void loginService(String email, String password){
-        LoginService loginService = new LoginService(this);
+    private void loginService(User user){
+        LoginServiceImpl loginService = new LoginServiceImpl();
+        loginService.loginSucces(getApplicationContext(), user);
     }
 
     
