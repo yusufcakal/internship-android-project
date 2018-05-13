@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import yusufcakal.com.stajtakip.presentation.LoginServiceImpl;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 
@@ -50,8 +52,12 @@ public class MainActivity extends AppCompatActivity
     private void loginService(User user){
         LoginServiceImpl loginService = new LoginServiceImpl();
         loginService.loginSucces(this, user);
-        if (SessionUtil.check(this))
-            startActivity(new Intent(this, DashboardActivity.class));
+        if (SessionUtil.check(this)){
+            Toast.makeText(this, "Giriş Yapıldı", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "hatalı giriş", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     

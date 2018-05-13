@@ -1,6 +1,7 @@
 package yusufcakal.com.stajtakip.presentation;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -32,8 +33,10 @@ public class LoginServiceImpl implements LoginListener{
     public void onSuccess(String result) {
         try {
             JSONObject object = new JSONObject(result);
-            String token = object.getJSONObject("result").getString("token");
-            SessionUtil.start(context, token);
+            //JSONObject resultObject = object.getJSONObject("result");
+            if (object.get("result"))
+            Log.e("result", object.get("result"));
+            //SessionUtil.start(context, token);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -41,6 +44,6 @@ public class LoginServiceImpl implements LoginListener{
 
     @Override
     public void onError(VolleyError error) {
-
+        SessionUtil.stop(context);
     }
 }

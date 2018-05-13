@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Staj Takip</string>
     <string name="login">Giriş Yap</string>
+    <string name="my_internship">Stajlarım</string>
 </resources>
