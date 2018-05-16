@@ -4,6 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
+import yusufcakal.com.stajtakip.webservices.util.SharedPrefsUtils;
+
 public class DashboardActivity extends AppCompatActivity {
 
     @Override
@@ -18,6 +21,6 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Toast.makeText(this, "Geri", Toast.LENGTH_SHORT).show();
+        SharedPrefsUtils.setStringPreference(this, LinkUtil.SESSION_KEY, null);
     }
 }

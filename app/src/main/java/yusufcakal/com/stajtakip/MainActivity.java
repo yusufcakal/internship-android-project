@@ -8,11 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import yusufcakal.com.stajtakip.presentation.LoginServiceImpl;
+import com.android.volley.VolleyError;
+
+import yusufcakal.com.stajtakip.webservices.interfaces.LoginListener;
+import yusufcakal.com.stajtakip.webservices.services.LoginService;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 
 public class MainActivity extends AppCompatActivity
-    implements View.OnClickListener{
+    implements View.OnClickListener, LoginListener{
 
     private EditText etEmail, etPassword;
     private Button btnLogin;
@@ -50,15 +53,18 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void loginService(User user){
-        LoginServiceImpl loginService = new LoginServiceImpl();
-        loginService.loginSucces(this, user);
-        if (SessionUtil.check(this)){
-            Toast.makeText(this, "Giriş Yapıldı", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(this, "hatalı giriş", Toast.LENGTH_SHORT).show();
-        }
-
+        LoginService loginService = new LoginService(this, this);
+        loginService.login(user);
     }
 
-    
+
+    @Override
+    public void onSuccess(String result) {
+        Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onError(VolleyError error) {
+        Toast.makeText(this, error.toString(), Toast.LENGTH_SHORT).show();
+    }
 }
