@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import yusufcakal.com.stajtakip.webservices.interfaces.LoginListener;
 import yusufcakal.com.stajtakip.webservices.services.LoginService;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
@@ -60,11 +63,25 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onSuccess(String result) {
-        Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+            boolean loginFlag = jsonObject.getBoolean("result");
+            if (loginFlag){
+                JSONObject info = jsonObject.getJSONObject("bilgiler");
+                String token = info.getString("token");
+                SessionUtil.start(this, token);
+                startActivity(new Intent(this, DashboardActivity.class));
+            }else{
+                String error = jsonObject.getString("error");
+                Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void onError(VolleyError error) {
-        Toast.makeText(this, error.toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, String.valueOf(error), Toast.LENGTH_SHORT).show();
     }
 }
