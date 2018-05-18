@@ -3,8 +3,8 @@ package yusufcakal.com.stajtakip;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
-
 import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
+import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 import yusufcakal.com.stajtakip.webservices.util.SharedPrefsUtils;
 
 public class DashboardActivity extends AppCompatActivity {
@@ -13,6 +13,8 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        Toast.makeText(this, SessionUtil.getToken(this), Toast.LENGTH_SHORT).show();
 
         setTitle(getResources().getText(R.string.my_internship));
         

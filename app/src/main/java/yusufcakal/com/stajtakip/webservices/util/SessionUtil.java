@@ -22,5 +22,8 @@ public class SessionUtil {
         SharedPrefsUtils.setStringPreference(context, LinkUtil.SESSION_KEY, null);
     }
 
+    public static String getToken(Context context){
+        return SharedPrefsUtils.getStringPreference(context, LinkUtil.SESSION_KEY);
+    }
 
 }
