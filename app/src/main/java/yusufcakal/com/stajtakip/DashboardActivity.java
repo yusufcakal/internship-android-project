@@ -1,15 +1,12 @@
 package yusufcakal.com.stajtakip;
 
-import android.graphics.drawable.BitmapDrawable;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.heinrichreimersoftware.materialdrawer.DrawerActivity;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
-import com.heinrichreimersoftware.materialdrawer.structure.DrawerProfile;
 
-import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
-import yusufcakal.com.stajtakip.webservices.util.SharedPrefsUtils;
+import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 
 public class DashboardActivity extends DrawerActivity {
 
@@ -25,16 +22,29 @@ public class DashboardActivity extends DrawerActivity {
                         .setOnItemClickListener(new DrawerItem.OnItemClickListener() {
                             @Override
                             public void onClick(DrawerItem drawerItem, long id, int position) {
-                                Toast.makeText(DashboardActivity.this, "Firmalar" + id, Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(DashboardActivity.this, FirmaActivity.class));
                             }
                         })
         );
-        
+        addDivider();
+        addItem(
+                new DrawerItem()
+                        .setImage(getResources().getDrawable(R.drawable.ic_last_page_black_24dp))
+                        .setTextPrimary(getString(R.string.logout))
+                        .setOnItemClickListener(new DrawerItem.OnItemClickListener() {
+                            @Override
+                            public void onClick(DrawerItem drawerItem, long id, int position) {
+                                SessionUtil.stop(DashboardActivity.this);
+                                startActivity(new Intent(DashboardActivity.this, MainActivity.class));
+                            }
+                        })
+        );
+
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        SharedPrefsUtils.setStringPreference(this, LinkUtil.SESSION_KEY, null);
+        finish();
     }
 }
