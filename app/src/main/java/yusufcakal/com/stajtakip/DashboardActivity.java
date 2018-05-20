@@ -2,10 +2,12 @@ package yusufcakal.com.stajtakip;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import com.heinrichreimersoftware.materialdrawer.DrawerActivity;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
-
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 
 public class DashboardActivity extends DrawerActivity {
@@ -22,7 +24,9 @@ public class DashboardActivity extends DrawerActivity {
                         .setOnItemClickListener(new DrawerItem.OnItemClickListener() {
                             @Override
                             public void onClick(DrawerItem drawerItem, long id, int position) {
-                                startActivity(new Intent(DashboardActivity.this, FirmaActivity.class));
+                                //startActivity(new Intent(DashboardActivity.this, FirmaActivity.class));
+                                openFragment(new FirmaFragment());
+                                DashboardActivity.this.closeDrawer();
                             }
                         })
         );
@@ -47,4 +51,14 @@ public class DashboardActivity extends DrawerActivity {
         super.onBackPressed();
         finish();
     }
+
+    private void openFragment(final Fragment fragment)   {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+
 }
