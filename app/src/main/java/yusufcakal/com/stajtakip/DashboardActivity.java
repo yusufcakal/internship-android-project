@@ -1,22 +1,34 @@
 package yusufcakal.com.stajtakip;
 
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.heinrichreimersoftware.materialdrawer.DrawerActivity;
+import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
+import com.heinrichreimersoftware.materialdrawer.structure.DrawerProfile;
+
 import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
-import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 import yusufcakal.com.stajtakip.webservices.util.SharedPrefsUtils;
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardActivity extends DrawerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        Toast.makeText(this, SessionUtil.getToken(this), Toast.LENGTH_SHORT).show();
-
-        setTitle(getResources().getText(R.string.my_internship));
+        addItem(
+                new DrawerItem()
+                        .setImage(getResources().getDrawable(R.drawable.ic_home_black_24dp))
+                        .setTextPrimary(getString(R.string.firmalar))
+                        .setOnItemClickListener(new DrawerItem.OnItemClickListener() {
+                            @Override
+                            public void onClick(DrawerItem drawerItem, long id, int position) {
+                                Toast.makeText(DashboardActivity.this, "Firmalar" + id, Toast.LENGTH_SHORT).show();
+                            }
+                        })
+        );
         
     }
 

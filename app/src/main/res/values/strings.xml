@@ -2,4 +2,8 @@
     <string name="app_name">Staj Takip</string>
     <string name="login">Giriş Yap</string>
     <string name="my_internship">Stajlarım</string>
+    <string name="profile_name">Yusuf ÇAKAL</string>
+    <string name="profile_description">Öğrenci</string>
+    <string name="stajlarım">Stajlarım</string>
+    <string name="firmalar">Firmalar</string>
 </resources>
