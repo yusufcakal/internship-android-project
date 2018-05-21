@@ -5,7 +5,7 @@
     <string name="profile_name">Yusuf ÇAKAL</string>
     <string name="profile_description">Öğrenci</string>
     <string name="stajlarım">Stajlarım</string>
-    <string name="firmalar">Firma İşlemleri</string>
+    <string name="firmalar">FİRMA İŞLEMLERİ</string>
     <string name="firma">Firmalar</string>
     <string name="logout">Çıkış Yap</string>
     <string name="firmaOnayEksi1">Firma Onayı Bekleniyor..</string>
@@ -14,4 +14,6 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="firmaadi">Firma Adı</string>
+    <string name="firmamail">Firma Mail</string>
 </resources>

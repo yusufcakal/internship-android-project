@@ -1,4 +1,4 @@
-package yusufcakal.com.stajtakip.adapter;
+package yusufcakal.com.stajtakip.adapter.firma;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -46,14 +46,20 @@ public class FirmaAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View rowView;
-        rowView = layoutInflater.inflate(R.layout.firma_item , null);
+        View view1;
+
+        if (view == null) {
+            view1 = new View(context);
+            view1 = layoutInflater.inflate(R.layout.firma_item, null);
+        } else {
+            view1 = view;
+        }
 
         String firmaAdi = firmaList.get(i).getAdi();
         int onay = firmaList.get(i).getOnay();
 
-        TextView tvFirmaName = rowView.findViewById(R.id.tvName);
-        TextView tvFirmaOnay = rowView.findViewById(R.id.tvOnay);
+        TextView tvFirmaName = view1.findViewById(R.id.tvName);
+        TextView tvFirmaOnay = view1.findViewById(R.id.tvOnay);
 
         tvFirmaName.setText(firmaAdi);
 
@@ -66,10 +72,10 @@ public class FirmaAdapter extends BaseAdapter {
         }else if (onay == 0){
             tvFirmaOnay.setText(context.getResources().getString(R.string.firmaOnay0));
         }else{
-            tvFirmaName.setText(context.getResources().getString(R.string.firmaOnayBir));
+            tvFirmaOnay.setText(context.getResources().getString(R.string.firmaOnayBir));
         }
 
-        return rowView;
+        return view1;
 
 
     }

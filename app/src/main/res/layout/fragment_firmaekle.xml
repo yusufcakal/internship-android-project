@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_marginTop="50dp"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Firma Ekle"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/etFirmaAdi"
+        android:hint="@string/firmaadi"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/etFirmaMail"
+        android:layout_below="@+id/etFirmaAdi"
+        android:hint="@string/firmamail"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 </RelativeLayout>
