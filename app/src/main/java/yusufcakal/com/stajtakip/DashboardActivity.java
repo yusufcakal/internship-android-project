@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 
 import com.heinrichreimersoftware.materialdrawer.DrawerActivity;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
@@ -12,10 +13,14 @@ import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 
 public class DashboardActivity extends DrawerActivity {
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        toolbar = findViewById(R.id.toolbar);
 
         addItem(
                 new DrawerItem()
@@ -58,6 +63,10 @@ public class DashboardActivity extends DrawerActivity {
         transaction.replace(R.id.container, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    private void setTitle(String title){
+        toolbar.setTitle(title);
     }
 
 
