@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_marginTop="50dp"
     android:layout_height="match_parent">
 
     <EditText
+        android:layout_marginTop="100dp"
         android:id="@+id/etFirmaAdi"
+        android:background="@drawable/edittext_back"
+        android:padding="9dp"
         android:hint="@string/firmaadi"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -14,11 +16,26 @@
 
     <EditText
         android:id="@+id/etFirmaMail"
+        android:background="@drawable/edittext_back"
+        android:padding="9dp"
         android:layout_below="@+id/etFirmaAdi"
         android:hint="@string/firmamail"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnFirmaEkle"
+        android:layout_below="@+id/etFirmaMail"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/firmaekle"
+        android:textColor="@color/colorWhite"
+        android:backgroundTint="@color/colorPrimary"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
