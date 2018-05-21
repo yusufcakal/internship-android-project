@@ -43,7 +43,6 @@ public class FirmaEkleFragment extends android.support.v4.app.Fragment
         btnFirmaEkle = view.findViewById(R.id.btnFirmaEkle);
         btnFirmaEkle.setOnClickListener(this);
 
-
         return view;
     }
 
