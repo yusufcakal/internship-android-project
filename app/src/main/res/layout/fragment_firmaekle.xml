@@ -6,7 +6,7 @@
     <TextView
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Firmalar"
+        android:text="Firma Ekle"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

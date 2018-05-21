@@ -5,7 +5,8 @@
     <string name="profile_name">Yusuf ÇAKAL</string>
     <string name="profile_description">Öğrenci</string>
     <string name="stajlarım">Stajlarım</string>
-    <string name="firmalar">Firmalar</string>
+    <string name="firmalar">Firma İşlemleri</string>
+    <string name="firma">Firmalar</string>
     <string name="logout">Çıkış Yap</string>
 
     <!-- TODO: Remove or change this placeholder text -->

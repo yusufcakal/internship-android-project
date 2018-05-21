@@ -37,12 +37,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
     // INCLUDE
     compile 'com.android.support:support-v4:22.2.0'
-    compile 'com.android.support:design:22.2.0'
     compile 'com.android.volley:volley:1.0.0'
-
     compile 'com.heinrichreimersoftware:material-drawer:2.3.3'
-
+    implementation 'com.android.support:design:26.1.0'
 }
