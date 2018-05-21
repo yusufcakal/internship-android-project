@@ -17,4 +17,6 @@
     <string name="firmaadi">Firma Adı</string>
     <string name="firmamail">Firma Mail</string>
     <string name="firmaekle">Firma Ekle</string>
+    <string name="staj">Stajlar</string>
+    <string name="stajlar">STAJ İŞLEMLERİ</string>
 </resources>

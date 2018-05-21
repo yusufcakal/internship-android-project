@@ -10,6 +10,10 @@ public class LinkUtil {
 
     public static String loginUrl = baseUrl + "Login";
 
+    public static String firmaListeleUrl = baseUrl + "Firma/Listele";
+
+    public static String firmaEkleUrl = baseUrl + "Firma/Ekle";
+
     public static String SESSION_KEY = "session";
 
 }

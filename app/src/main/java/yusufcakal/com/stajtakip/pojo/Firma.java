@@ -7,7 +7,13 @@ package yusufcakal.com.stajtakip.pojo;
 public class Firma {
 
     private int id, onay;
-    private String adi;
+    private String adi, eposta;
+
+    public Firma(int onay, String adi, String eposta) {
+        this.eposta = eposta;
+        this.onay = onay;
+        this.adi = adi;
+    }
 
     public Firma(int onay, String adi) {
         this.onay = onay;
@@ -15,6 +21,14 @@ public class Firma {
     }
 
     public Firma() {}
+
+    public String getEposta() {
+        return eposta;
+    }
+
+    public void setEposta(String eposta) {
+        this.eposta = eposta;
+    }
 
     public int getId() {
         return id;

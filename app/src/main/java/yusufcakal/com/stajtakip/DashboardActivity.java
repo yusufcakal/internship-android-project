@@ -8,10 +8,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import com.heinrichreimersoftware.materialdrawer.DrawerActivity;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
-import yusufcakal.com.stajtakip.fragments.firma.FirmaIslemleriFragment;
+import yusufcakal.com.stajtakip.fragments.firma.FirmalarFragment;
+import yusufcakal.com.stajtakip.fragments.staj.StajlarIslemleriFragment;
+import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 
-public class DashboardActivity extends DrawerActivity {
+public class DashboardActivity extends DrawerActivity implements FragmentListener{
 
     private ActionBar toolbar;
 
@@ -22,7 +24,7 @@ public class DashboardActivity extends DrawerActivity {
 
         toolbar = getSupportActionBar();
         setTitle(getResources().getString(R.string.firmalar));
-        openFragment(new FirmaIslemleriFragment());
+        openFragment(new FirmalarFragment());
 
         addItem(
                 new DrawerItem()
@@ -32,7 +34,21 @@ public class DashboardActivity extends DrawerActivity {
                             @Override
                             public void onClick(DrawerItem drawerItem, long id, int position) {
                                 setTitle(getResources().getString(R.string.firmalar));
-                                openFragment(new FirmaIslemleriFragment());
+                                openFragment(new FirmalarFragment());
+                                DashboardActivity.this.closeDrawer();
+                            }
+                        })
+        );
+
+        addItem(
+                new DrawerItem()
+                        .setImage(getResources().getDrawable(R.drawable.ic_home_black_24dp))
+                        .setTextPrimary(getString(R.string.staj))
+                        .setOnItemClickListener(new DrawerItem.OnItemClickListener() {
+                            @Override
+                            public void onClick(DrawerItem drawerItem, long id, int position) {
+                                setTitle(getResources().getString(R.string.stajlar));
+                                openFragment(new StajlarIslemleriFragment());
                                 DashboardActivity.this.closeDrawer();
                             }
                         })
@@ -60,11 +76,19 @@ public class DashboardActivity extends DrawerActivity {
     }
 
     private void openFragment(final Fragment fragment)   {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.container, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        String backStateName = fragment.getClass().getName();
+
+        FragmentManager manager = getSupportFragmentManager();
+        boolean fragmentPopped = manager.popBackStackImmediate (backStateName, 0);
+
+        if (!fragmentPopped){ //fragment not in back stack, create it.
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.replace(R.id.container, fragment);
+            ft.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            ft.addToBackStack(backStateName);
+            ft.commit();
+        }
+
     }
 
     private void setTitle(String title){
@@ -72,4 +96,8 @@ public class DashboardActivity extends DrawerActivity {
     }
 
 
+    @Override
+    public void onStart(Fragment fragment) {
+        openFragment(fragment);
+    }
 }
