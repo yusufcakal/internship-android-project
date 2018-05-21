@@ -1,4 +1,4 @@
-package yusufcakal.com.stajtakip;
+package yusufcakal.com.stajtakip.pojo;
 
 /**
  * Created by Yusuf on 8.05.2018.

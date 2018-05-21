@@ -8,6 +8,9 @@
     <string name="firmalar">Firma İşlemleri</string>
     <string name="firma">Firmalar</string>
     <string name="logout">Çıkış Yap</string>
+    <string name="firmaOnayEksi1">Firma Onayı Bekleniyor..</string>
+    <string name="firmaOnay0">Okul Onayı Bekleniyor..</string>
+    <string name="firmaOnayBir">Onaylandı</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

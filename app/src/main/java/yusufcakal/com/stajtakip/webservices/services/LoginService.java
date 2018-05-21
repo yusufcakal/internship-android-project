@@ -1,7 +1,6 @@
 package yusufcakal.com.stajtakip.webservices.services;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.android.volley.*;
 import com.android.volley.Request;
@@ -10,8 +9,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-import yusufcakal.com.stajtakip.MainActivity;
-import yusufcakal.com.stajtakip.User;
+import yusufcakal.com.stajtakip.pojo.User;
 import yusufcakal.com.stajtakip.webservices.interfaces.LoginListener;
 import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
 import yusufcakal.com.stajtakip.webservices.volley.VolleyClient;

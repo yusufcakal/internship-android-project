@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
+
 import com.heinrichreimersoftware.materialdrawer.DrawerActivity;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
 import yusufcakal.com.stajtakip.fragments.FirmaEkleFragment;
@@ -36,10 +38,10 @@ public class DashboardActivity extends DrawerActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        toolbar = getSupportActionBar();
+        Log.e("TOKEN", SessionUtil.getToken(this));
 
+        toolbar = getSupportActionBar();
         setTitle(getResources().getString(R.string.firmalar));
-        openFragment(new FirmaFragment());
 
         mViewPager = findViewById(R.id.viewpager);
         mViewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
@@ -47,7 +49,6 @@ public class DashboardActivity extends DrawerActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setTabTextColors(ColorStateList.valueOf(getResources().getColor(R.color.colorWhite)));
         tabLayout.setupWithViewPager(mViewPager);
-
 
         addItem(
                 new DrawerItem()
@@ -79,7 +80,6 @@ public class DashboardActivity extends DrawerActivity {
 
     }
 
-    /* PagerAdapter for supplying the ViewPager with the pages (fragments) to display. */
     public class MyPagerAdapter extends FragmentPagerAdapter {
 
         public MyPagerAdapter(FragmentManager fragmentManager) {

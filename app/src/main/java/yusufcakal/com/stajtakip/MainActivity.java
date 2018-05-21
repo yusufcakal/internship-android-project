@@ -13,6 +13,7 @@ import com.android.volley.VolleyError;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import yusufcakal.com.stajtakip.pojo.User;
 import yusufcakal.com.stajtakip.webservices.interfaces.LoginListener;
 import yusufcakal.com.stajtakip.webservices.services.LoginService;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
