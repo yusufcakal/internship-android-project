@@ -26,4 +26,9 @@ public class SessionUtil {
         return SharedPrefsUtils.getStringPreference(context, LinkUtil.SESSION_KEY);
     }
 
+    public static String getUserId(Context context){
+        return SharedPrefsUtils.getStringPreference(context, LinkUtil.USER_ID);
+    }
+
+
 }

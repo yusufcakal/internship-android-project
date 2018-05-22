@@ -10,13 +10,20 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import yusufcakal.com.stajtakip.pojo.Bolum;
 import yusufcakal.com.stajtakip.pojo.User;
 import yusufcakal.com.stajtakip.webservices.interfaces.LoginListener;
 import yusufcakal.com.stajtakip.webservices.services.LoginService;
+import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
+import yusufcakal.com.stajtakip.webservices.util.SharedPrefsUtils;
 
 public class MainActivity extends AppCompatActivity
     implements View.OnClickListener, LoginListener{
@@ -70,6 +77,22 @@ public class MainActivity extends AppCompatActivity
             if (loginFlag){
                 JSONObject info = jsonObject.getJSONObject("bilgiler");
                 String token = info.getString("token");
+                int userId = info.getInt("id");
+                SharedPrefsUtils.setIntegerPreference(this, LinkUtil.USER_ID, userId);
+
+                List<Bolum> bolumList = new ArrayList<>();
+
+                JSONArray bolumlerArray = jsonObject.getJSONArray("bolumler");
+                for (int i=0; i<bolumlerArray.length(); i++){
+                    JSONObject bolumObject = bolumlerArray.getJSONObject(i);
+                    String bolumAdi = bolumObject.getString("bolum_adi");
+                    String fakulteAdi = bolumObject.getString("fakulte_adi");
+                    int bolum_id = bolumObject.getInt("bolum_id");
+                    Bolum bolum = new Bolum(bolum_id, bolumAdi, fakulteAdi);
+                    bolumList.add(bolum);
+                }
+
+                SharedPrefsUtils.setIntegerPreference(getApplicationContext(), LinkUtil.BOLUM_ID, bolumList.get(0).getId());
                 SessionUtil.start(this, token);
                 startActivity(new Intent(this, DashboardActivity.class));
             }else{

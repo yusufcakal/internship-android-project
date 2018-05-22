@@ -9,7 +9,7 @@ import android.support.v7.app.ActionBar;
 import com.heinrichreimersoftware.materialdrawer.DrawerActivity;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
 import yusufcakal.com.stajtakip.fragments.firma.FirmalarFragment;
-import yusufcakal.com.stajtakip.fragments.staj.StajlarIslemleriFragment;
+import yusufcakal.com.stajtakip.fragments.staj.StajlarFragment;
 import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 
@@ -48,7 +48,7 @@ public class DashboardActivity extends DrawerActivity implements FragmentListene
                             @Override
                             public void onClick(DrawerItem drawerItem, long id, int position) {
                                 setTitle(getResources().getString(R.string.stajlar));
-                                openFragment(new StajlarIslemleriFragment());
+                                openFragment(new StajlarFragment());
                                 DashboardActivity.this.closeDrawer();
                             }
                         })

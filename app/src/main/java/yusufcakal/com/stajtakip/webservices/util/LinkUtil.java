@@ -12,8 +12,14 @@ public class LinkUtil {
 
     public static String firmaListeleUrl = baseUrl + "Firma/Listele";
 
+    public static String stajListeleUrl = baseUrl + "Staj/Listele";
+
     public static String firmaEkleUrl = baseUrl + "Firma/Ekle";
 
     public static String SESSION_KEY = "session";
+
+    public static String USER_ID = "user_id";
+
+    public static String BOLUM_ID = "bolum_id";
 
 }
