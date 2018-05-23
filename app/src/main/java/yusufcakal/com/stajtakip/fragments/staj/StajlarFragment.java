@@ -62,6 +62,6 @@ public class StajlarFragment extends Fragment implements StajListeleListener{
 
     @Override
     public void onError(VolleyError error) {
-        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), error.toString() + " sasadas", Toast.LENGTH_SHORT).show();
     }
 }
