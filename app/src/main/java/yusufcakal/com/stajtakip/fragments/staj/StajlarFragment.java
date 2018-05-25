@@ -1,11 +1,15 @@
 package yusufcakal.com.stajtakip.fragments.staj;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -19,7 +23,9 @@ import java.util.Date;
 import java.util.List;
 
 import yusufcakal.com.stajtakip.R;
+import yusufcakal.com.stajtakip.adapter.firma.StajAdapter;
 import yusufcakal.com.stajtakip.pojo.Staj;
+import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.StajListeleListener;
 import yusufcakal.com.stajtakip.webservices.services.StajlarService;
 
@@ -27,15 +33,40 @@ import yusufcakal.com.stajtakip.webservices.services.StajlarService;
  * Created by Yusuf on 21.05.2018.
  */
 
-public class StajlarFragment extends Fragment implements StajListeleListener{
+public class StajlarFragment extends Fragment implements StajListeleListener, AdapterView.OnItemClickListener{
 
     private View view;
     private List<Staj> stajList;
+    private ListView lvStajlar;
+    private Button btnStajEkle;
+    private FragmentListener fragmentListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        fragmentListener = (FragmentListener) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        fragmentListener = null;
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_stajlar, container, false);
+
+        lvStajlar = view.findViewById(R.id.lvStajlar);
+        btnStajEkle = view.findViewById(R.id.btnStajEkle);
+        lvStajlar.setOnItemClickListener(this);
+        btnStajEkle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragmentListener.onStart(new StajEkleFragment());
+            }
+        });
 
         stajList = new ArrayList<>();
 
@@ -66,8 +97,10 @@ public class StajlarFragment extends Fragment implements StajListeleListener{
                     Staj staj = new Staj(stajId, kullaniciId, firmaId, puan, sonuc, bolumId, baslangicTarihi, bitisTarihi);
                     stajList.add(staj);
                 }
-
             }
+
+            StajAdapter stajAdapter = new StajAdapter(getContext(), stajList);
+            lvStajlar.setAdapter(stajAdapter);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -77,5 +110,10 @@ public class StajlarFragment extends Fragment implements StajListeleListener{
     @Override
     public void onError(VolleyError error) {
         Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Toast.makeText(getContext(), i + "", Toast.LENGTH_SHORT).show();
     }
 }

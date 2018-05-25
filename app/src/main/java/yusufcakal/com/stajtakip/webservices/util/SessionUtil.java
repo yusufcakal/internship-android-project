@@ -30,5 +30,9 @@ public class SessionUtil {
         return SharedPrefsUtils.getIntegerPreference(context, LinkUtil.USER_ID, -1);
     }
 
+    public static int getBolumId(Context context){
+        return SharedPrefsUtils.getIntegerPreference(context, LinkUtil.BOLUM_ID, -1);
+    }
+
 
 }
