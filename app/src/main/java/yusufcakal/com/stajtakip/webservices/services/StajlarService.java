@@ -12,7 +12,6 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-import yusufcakal.com.stajtakip.webservices.interfaces.FirmalarListeleListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.StajListeleListener;
 import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
@@ -51,10 +50,10 @@ public class StajlarService {
                     }
                 }){
             @Override
-            protected Map<String,String> getParams(){
+            protected Map<String, String> getParams(){
                 Map<String,String> params = new HashMap<>();
                 params.put("token", SessionUtil.getToken(context));
-                params.put("kullanici_id", SessionUtil.getUserId(context));
+                params.put("kullanici_id", String.valueOf(SessionUtil.getUserId(context)));
                 return params;
             }
 

@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity
         
         btnLogin.setOnClickListener(this);
 
-
     }
 
     @Override
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity
 
                 List<Bolum> bolumList = new ArrayList<>();
 
-                JSONArray bolumlerArray = jsonObject.getJSONArray("bolumler");
+                JSONArray bolumlerArray = info.getJSONArray("bolumler");
                 for (int i=0; i<bolumlerArray.length(); i++){
                     JSONObject bolumObject = bolumlerArray.getJSONObject(i);
                     String bolumAdi = bolumObject.getString("bolum_adi");
