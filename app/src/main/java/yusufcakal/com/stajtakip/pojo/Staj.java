@@ -23,6 +23,38 @@ public class Staj {
         this.firmaAdi = firmaAdi;
     }
 
+    public int getPuan() {
+        return puan;
+    }
+
+    public void setPuan(int puan) {
+        this.puan = puan;
+    }
+
+    public int getSonuc() {
+        return sonuc;
+    }
+
+    public void setSonuc(int sonuc) {
+        this.sonuc = sonuc;
+    }
+
+    public String getBolumAdi() {
+        return bolumAdi;
+    }
+
+    public void setBolumAdi(String bolumAdi) {
+        this.bolumAdi = bolumAdi;
+    }
+
+    public String getFirmaAdi() {
+        return firmaAdi;
+    }
+
+    public void setFirmaAdi(String firmaAdi) {
+        this.firmaAdi = firmaAdi;
+    }
+
     public int getFirmaId() {
         return firmaId;
     }

@@ -14,31 +14,28 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/tvName"
+                android:id="@+id/tvFirmaAdi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Firma Adı"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                 />
 
             <TextView
                 android:textColor="@color/colorPrimaryDark"
-                android:layout_below="@+id/tvName"
+                android:layout_below="@+id/tvFirmaAdi"
                 android:id="@+id/tvBaslangicTarih"
                 android:layout_marginTop="5dp"
                 android:textSize="14sp"
-                android:text="Başlangıç Tarihi - "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_toRightOf="@+id/tvBaslangicTarih"
-                android:layout_below="@+id/tvName"
+                android:layout_below="@+id/tvFirmaAdi"
                 android:id="@+id/tvBitisTarih"
                 android:layout_marginTop="5dp"
                 android:textSize="14sp"
-                android:text="Bitiş Tarihi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -46,7 +43,6 @@
                 android:id="@+id/tvPuan"
                 android:layout_alignParentRight="true"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:text="Puan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -55,7 +51,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/tvPuan"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:text="Sonuç"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

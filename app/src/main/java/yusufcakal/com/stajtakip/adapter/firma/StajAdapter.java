@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.List;
 
 import yusufcakal.com.stajtakip.R;
-import yusufcakal.com.stajtakip.pojo.Firma;
 import yusufcakal.com.stajtakip.pojo.Staj;
 
 /**
@@ -50,10 +49,24 @@ public class StajAdapter extends BaseAdapter {
 
         if (view == null) {
             view1 = new View(context);
-            view1 = layoutInflater.inflate(R.layout.staj_item, null);
+            view1 = layoutInflater.inflate(R.layout.staj_firma_item, null);
         } else {
             view1 = view;
         }
+
+        TextView tvFirmaAdi = view1.findViewById(R.id.tvFirmaAdi);
+        TextView tvBaslangicTarih = view1.findViewById(R.id.tvBaslangicTarih);
+        TextView tvBitisTarih = view1.findViewById(R.id.tvBitisTarih);
+        TextView tvPuan = view1.findViewById(R.id.tvPuan);
+        TextView tvSonuc = view1.findViewById(R.id.tvSonuc);
+
+        Staj staj = stajList.get(i);
+
+        tvFirmaAdi.setText(staj.getFirmaAdi());
+        tvBaslangicTarih.setText(staj.getBaslangicTarihi().split(" ")[0] + " - ");
+        tvBitisTarih.setText(staj.getBitisTarihi().split(" ")[0]);
+        tvSonuc.setText("Sonuç : " + staj.getSonuc());
+        tvPuan.setText("Puan   : " + staj.getPuan());
 
         return view1;
 
