@@ -38,7 +38,7 @@ public class FirmalarService {
         this.firmalarListeleListener = firmalarListeleListener;
     }
 
-    public void getFirmalar(){
+    public  void getFirmalar(){
         StringRequest stringRequest = new StringRequest(requestMethod, url,
                 new Response.Listener<String>() {
                     @Override
