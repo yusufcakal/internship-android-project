@@ -25,6 +25,58 @@
 
         </Spinner>
 
+        <TextView
+            android:id="@+id/tvBaslangicTarih"
+            android:layout_below="@+id/tvFirmaSeç"
+            android:layout_marginTop="30dp"
+            android:text="Staj Başlangıç Tarihi"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnBaslangicTarih"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:text="@string/select"
+            android:textColor="@color/colorWhite"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:id="@+id/tvBitisTarih"
+            android:layout_below="@+id/tvBaslangicTarih"
+            android:layout_marginTop="30dp"
+            android:text="Staj Bitis Tarihi"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnBitisTarih"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:text="@string/select"
+            android:textColor="@color/colorWhite"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/btnBaslangicTarih"
+            android:layout_alignParentRight="true"
+            />
+
+        <Button
+            android:id="@+id/btnStajEkle"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/send"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/btnBitisTarih"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </RelativeLayout>
 
 </RelativeLayout>

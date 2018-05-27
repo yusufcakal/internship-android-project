@@ -86,15 +86,14 @@ public class StajlarFragment extends Fragment implements StajListeleListener, Ad
                 JSONArray stajlarimArray = jsonObject.getJSONArray("stajlarim");
                 for (int i=0; i<stajlarimArray.length(); i++){
                     JSONObject object = stajlarimArray.getJSONObject(i);
-                    int stajId = object.getInt("id");
-                    int kullaniciId = object.getInt("kullanici_id");
-                    int firmaId = object.getInt("firma_id");
+                    int stajId = object.getInt("staj_id");
                     int puan = object.getInt("puan");
                     int sonuc = object.getInt("sonuc");
-                    int bolumId = object.getInt("bolum_id");
                     String baslangicTarihi = object.getString("baslangic_tarih");
                     String bitisTarihi = object.getString("bitis_tarih");
-                    Staj staj = new Staj(stajId, kullaniciId, firmaId, puan, sonuc, bolumId, baslangicTarihi, bitisTarihi);
+                    String bolumAdi = object.getString("bolum_adi");
+                    String firmaAdi = object.getString("firma_adi");
+                    Staj staj = new Staj(stajId, puan, sonuc, baslangicTarihi, bitisTarihi, bolumAdi, firmaAdi);
                     stajList.add(staj);
                 }
             }

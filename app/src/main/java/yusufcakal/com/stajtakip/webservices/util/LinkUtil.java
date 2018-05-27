@@ -16,6 +16,8 @@ public class LinkUtil {
 
     public static String firmaEkleUrl = baseUrl + "Firma/Ekle";
 
+    public static String stajEkleUrl = baseUrl + "Staj/Ekle";
+
     public static String SESSION_KEY = "session";
 
     public static String USER_ID = "user_id";

@@ -8,36 +8,19 @@ import java.util.Date;
 
 public class Staj {
 
-    private int id, kullaniciId, firmaId, puan, sonuc, bolum_id;
-    private String baslangicTarihi, bitisTarihi;
+    private int id, puan, sonuc, firmaId;
+    private String baslangicTarihi, bitisTarihi, bolumAdi, firmaAdi;
 
     public Staj() {}
 
-    public Staj(int id, int kullaniciId, int firmaId, int puan, int sonuc, int bolum_id, String baslangicTarihi, String bitisTarihi) {
+    public Staj(int id, int puan, int sonuc, String baslangicTarihi, String bitisTarihi, String bolumAdi, String firmaAdi) {
         this.id = id;
-        this.kullaniciId = kullaniciId;
-        this.firmaId = firmaId;
         this.puan = puan;
         this.sonuc = sonuc;
-        this.bolum_id = bolum_id;
         this.baslangicTarihi = baslangicTarihi;
         this.bitisTarihi = bitisTarihi;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getKullaniciId() {
-        return kullaniciId;
-    }
-
-    public void setKullaniciId(int kullaniciId) {
-        this.kullaniciId = kullaniciId;
+        this.bolumAdi = bolumAdi;
+        this.firmaAdi = firmaAdi;
     }
 
     public int getFirmaId() {
@@ -48,28 +31,12 @@ public class Staj {
         this.firmaId = firmaId;
     }
 
-    public int getPuan() {
-        return puan;
+    public int getId() {
+        return id;
     }
 
-    public void setPuan(int puan) {
-        this.puan = puan;
-    }
-
-    public int getSonuc() {
-        return sonuc;
-    }
-
-    public void setSonuc(int sonuc) {
-        this.sonuc = sonuc;
-    }
-
-    public int getBolum_id() {
-        return bolum_id;
-    }
-
-    public void setBolum_id(int bolum_id) {
-        this.bolum_id = bolum_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getBaslangicTarihi() {
