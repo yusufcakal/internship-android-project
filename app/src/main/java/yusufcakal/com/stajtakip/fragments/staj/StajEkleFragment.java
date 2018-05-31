@@ -3,6 +3,7 @@ package yusufcakal.com.stajtakip.fragments.staj;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -35,6 +36,7 @@ import yusufcakal.com.stajtakip.adapter.firma.CustomSpinnerAdapter;
 import yusufcakal.com.stajtakip.pojo.Firma;
 import yusufcakal.com.stajtakip.pojo.Staj;
 import yusufcakal.com.stajtakip.webservices.interfaces.FirmalarListeleListener;
+import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.StajEkleListener;
 import yusufcakal.com.stajtakip.webservices.services.FirmalarService;
 import yusufcakal.com.stajtakip.webservices.services.StajEkleService;
@@ -56,6 +58,7 @@ public class StajEkleFragment extends android.support.v4.app.Fragment implements
     private final Calendar myCalendar = Calendar.getInstance();
     private int firmaId;
     private String strStajBaslangicTarih, strStajBitisTarih;
+    private FragmentListener fragmentListener;
 
     @Nullable
     @Override
@@ -74,6 +77,18 @@ public class StajEkleFragment extends android.support.v4.app.Fragment implements
         firmalarService.getFirmalar();
 
         return view;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        fragmentListener = (FragmentListener) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        fragmentListener = null;
     }
 
     @Override
@@ -183,7 +198,7 @@ public class StajEkleFragment extends android.support.v4.app.Fragment implements
         try {
             JSONObject jsonObject = new JSONObject(result);
             if (jsonObject.getBoolean("result")){
-
+                fragmentListener.onStart(new StajlarFragment());
             }
         } catch (JSONException e) {
             e.printStackTrace();
