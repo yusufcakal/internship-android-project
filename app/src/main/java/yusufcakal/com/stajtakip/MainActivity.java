@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity
         loginService.login(user);
     }
 
-
     @Override
     public void onSuccess(String result) {
         try {
