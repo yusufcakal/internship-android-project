@@ -142,9 +142,11 @@ public class StajEkleFragment extends android.support.v4.app.Fragment implements
     @Override
     public void onClick(View view) {
         if (view == btnBaslangicTarih){
-            new DatePickerDialog(getContext(), R.style.AppTheme_DialogTheme,  date, myCalendar
+            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.AppTheme_DialogTheme,  date, myCalendar
                     .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                    myCalendar.get(Calendar.DAY_OF_MONTH));
+            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+            datePickerDialog.show();
             updateBaslangicLabel();
         }else if (view == btnBitisTarih){
             new DatePickerDialog(getContext(), R.style.AppTheme_DialogTheme,  date, myCalendar
