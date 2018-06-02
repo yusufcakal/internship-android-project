@@ -18,6 +18,10 @@ public class LinkUtil {
 
     public static String stajEkleUrl = baseUrl + "Staj/Ekle";
 
+    public static String stajGunEkleUrl = baseUrl + "Staj/RaporEkle";
+
+    public static String stajGunListeleUrl = baseUrl + "Staj/Listele";
+
     public static String SESSION_KEY = "session";
 
     public static String USER_ID = "user_id";

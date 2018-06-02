@@ -2,6 +2,7 @@ package yusufcakal.com.stajtakip.fragments.staj.stajgun;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -51,7 +52,6 @@ public class StajGunlerFragment extends Fragment{
         view = inflater.inflate(R.layout.fragment_stajgunler, container, false);
 
         staj = (Staj) getArguments().get("staj");
-        Toast.makeText(getContext(), staj.getFirmaAdi() + " - " + staj.getBaslangicTarihi(), Toast.LENGTH_SHORT).show();
 
         stajGunList = new ArrayList<>();
 
@@ -60,7 +60,7 @@ public class StajGunlerFragment extends Fragment{
             @Override
             public void onClick(View view) {
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.AppTheme_DialogTheme,  date, myCalendar
+                final DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.AppTheme_DialogTheme,  date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH));
 
@@ -84,8 +84,18 @@ public class StajGunlerFragment extends Fragment{
                 cal1.set(Calendar.DAY_OF_MONTH, day1);
 
                 datePickerDialog.getDatePicker().setMaxDate(cal1.getTimeInMillis());
-
                 datePickerDialog.show();
+
+                datePickerDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Ekle", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        int year = datePickerDialog.getDatePicker().getYear();
+                        int month = datePickerDialog.getDatePicker().getMonth();
+                        int day = datePickerDialog.getDatePicker().getDayOfMonth();
+                        String date = year + "-" + month + "-" + day;
+                        staj.setStajGunTarihi(date);
+                        fragmentListener.onStart(new StajGunEkleFragment(), staj);
+                    }
+                });
 
             }
         });

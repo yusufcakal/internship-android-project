@@ -3,8 +3,6 @@ package yusufcakal.com.stajtakip.pojo;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 /**
  * Created by Yusuf on 25.05.2018.
  */
@@ -13,6 +11,7 @@ public class Staj implements Parcelable {
 
     private int id, puan, sonuc, firmaId;
     private String baslangicTarihi, bitisTarihi, bolumAdi, firmaAdi;
+    private String stajGunTarihi;
 
     public Staj() {}
 
@@ -24,6 +23,37 @@ public class Staj implements Parcelable {
         this.bitisTarihi = bitisTarihi;
         this.bolumAdi = bolumAdi;
         this.firmaAdi = firmaAdi;
+    }
+
+    protected Staj(Parcel in) {
+        id = in.readInt();
+        puan = in.readInt();
+        sonuc = in.readInt();
+        firmaId = in.readInt();
+        baslangicTarihi = in.readString();
+        bitisTarihi = in.readString();
+        bolumAdi = in.readString();
+        firmaAdi = in.readString();
+    }
+
+    public static final Creator<Staj> CREATOR = new Creator<Staj>() {
+        @Override
+        public Staj createFromParcel(Parcel in) {
+            return new Staj(in);
+        }
+
+        @Override
+        public Staj[] newArray(int size) {
+            return new Staj[size];
+        }
+    };
+
+    public String getStajGunTarihi() {
+        return stajGunTarihi;
+    }
+
+    public void setStajGunTarihi(String stajGunTarihi) {
+        this.stajGunTarihi = stajGunTarihi;
     }
 
     public int getPuan() {
@@ -97,6 +127,13 @@ public class Staj implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
+        parcel.writeInt(id);
+        parcel.writeInt(puan);
+        parcel.writeInt(sonuc);
+        parcel.writeInt(firmaId);
+        parcel.writeString(baslangicTarihi);
+        parcel.writeString(bitisTarihi);
+        parcel.writeString(bolumAdi);
+        parcel.writeString(firmaAdi);
     }
 }
