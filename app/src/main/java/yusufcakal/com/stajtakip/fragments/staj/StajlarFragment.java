@@ -24,6 +24,7 @@ import java.util.List;
 
 import yusufcakal.com.stajtakip.R;
 import yusufcakal.com.stajtakip.adapter.firma.StajAdapter;
+import yusufcakal.com.stajtakip.fragments.staj.stajgun.StajGunlerFragment;
 import yusufcakal.com.stajtakip.pojo.Staj;
 import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.StajListeleListener;
@@ -113,6 +114,6 @@ public class StajlarFragment extends Fragment implements StajListeleListener, Ad
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(getContext(), i + "", Toast.LENGTH_SHORT).show();
+        fragmentListener.onStart(new StajGunlerFragment(), stajList.get(i));
     }
 }

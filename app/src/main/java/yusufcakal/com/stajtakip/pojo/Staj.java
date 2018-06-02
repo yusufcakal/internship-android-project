@@ -1,12 +1,15 @@
 package yusufcakal.com.stajtakip.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
 /**
  * Created by Yusuf on 25.05.2018.
  */
 
-public class Staj {
+public class Staj implements Parcelable {
 
     private int id, puan, sonuc, firmaId;
     private String baslangicTarihi, bitisTarihi, bolumAdi, firmaAdi;
@@ -85,5 +88,15 @@ public class Staj {
 
     public void setBitisTarihi(String bitisTarihi) {
         this.bitisTarihi = bitisTarihi;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }
