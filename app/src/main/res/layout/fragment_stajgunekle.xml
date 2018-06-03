@@ -4,9 +4,25 @@
     android:background="@color/colorGray"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_margin="20dp"
+        android:text="Staj Günü"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvStajGun"
+        android:layout_margin="20dp"
+        android:layout_alignParentRight="true"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <EditText
-        android:layout_marginTop="20dp"
-        android:id="@+id/etFirmaAdi"
+        android:layout_below="@+id/tvDate"
+        android:id="@+id/etAciklama"
         android:background="@drawable/edittext_back"
         android:padding="9dp"
         android:lines="8"

@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -47,6 +49,8 @@ public class StajGunEkleFragment extends android.support.v4.app.Fragment {
     private View view;
     private Staj staj;
     private String tarih;
+    private TextView tvStajGun;
+    private EditText etAciklama;
 
     @Nullable
     @Override
@@ -55,7 +59,10 @@ public class StajGunEkleFragment extends android.support.v4.app.Fragment {
 
         staj = (Staj) getArguments().get("staj");
         tarih = staj.getStajGunTarihi();
-        Toast.makeText(getContext(), tarih, Toast.LENGTH_SHORT).show();
+
+        tvStajGun = view.findViewById(R.id.tvStajGun);
+        etAciklama = view.findViewById(R.id.etAciklama);
+        tvStajGun.setText(staj.getStajGunTarihi());
 
         return view;
     }
