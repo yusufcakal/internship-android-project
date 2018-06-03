@@ -25,4 +25,5 @@
     <string name="stajgunekle">Staj Günü Ekle</string>
     <string name="stajgunaciklama">Staj Günü Açıklama</string>
     <string name="stajgunyok">Bu Staja Gün Eklenmemiştir.</string>
+    <string name="stajGunEkle">Gün Ekle</string>
 </resources>

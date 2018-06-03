@@ -44,14 +44,15 @@ import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
  * Created by Yusuf on 21.05.2018.
  */
 
-public class StajGunEkleFragment extends android.support.v4.app.Fragment {
+public class StajGunEkleFragment extends android.support.v4.app.Fragment
+        implements View.OnClickListener{
 
     private View view;
     private Staj staj;
     private String tarih;
     private TextView tvStajGun;
     private EditText etAciklama;
-
+    private Button btnStajGunEkle;
 
     @Nullable
     @Override
@@ -61,8 +62,20 @@ public class StajGunEkleFragment extends android.support.v4.app.Fragment {
         staj = (Staj) getArguments().get("staj");
         tarih = staj.getStajGunTarihi();
 
+        String year = staj.getStajGunTarihi().split("-")[0];
+        String month = staj.getStajGunTarihi().split("-")[1];
+        String day = staj.getStajGunTarihi().split("-")[2];
+
+        month = checkDigit(Integer.parseInt(month));
+        day = checkDigit(Integer.parseInt(day));
+
+        String date = year + "-" + month + "-" + day;
+        staj.setStajGunTarihi(date);
+
         tvStajGun = view.findViewById(R.id.tvStajGun);
         etAciklama = view.findViewById(R.id.etAciklama);
+        btnStajGunEkle = view.findViewById(R.id.btnStajGunEkle);
+
         tvStajGun.setText(staj.getStajGunTarihi());
 
         return view;
@@ -72,4 +85,10 @@ public class StajGunEkleFragment extends android.support.v4.app.Fragment {
         return number <= 9 ? "0" + number : String.valueOf(number);
     }
 
+    @Override
+    public void onClick(View view) {
+        /**
+         * TODO : Staja gün eklemek yapılacak. Açıklama + Resim
+         */
+    }
 }

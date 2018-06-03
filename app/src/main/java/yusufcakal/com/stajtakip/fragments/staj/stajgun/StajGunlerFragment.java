@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
@@ -41,7 +42,9 @@ import yusufcakal.com.stajtakip.webservices.util.SharedPrefsUtils;
  * Created by Yusuf on 21.05.2018.
  */
 
-public class StajGunlerFragment extends Fragment implements StajGunListeleListener{
+public class StajGunlerFragment extends Fragment implements
+        StajGunListeleListener,
+        AdapterView.OnItemClickListener{
 
     private View view;
     private Button btnStajGunEkle;
@@ -64,6 +67,7 @@ public class StajGunlerFragment extends Fragment implements StajGunListeleListen
         btnStajGunEkle = view.findViewById(R.id.btnStajGunEkle);
         tvStajGunYok = view.findViewById(R.id.tvStajGunYok);
         lvStajGunler = view.findViewById(R.id.lvStajGunler);
+        lvStajGunler.setOnItemClickListener(this);
         btnStajGunEkle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,6 +162,11 @@ public class StajGunlerFragment extends Fragment implements StajGunListeleListen
                 StajGunlerAdapter stajGunlerAdapter = new StajGunlerAdapter(getContext(), stajGunList);
                 lvStajGunler.setAdapter(stajGunlerAdapter);
 
+                if (stajGunList.size() == 0){
+                    tvStajGunYok.setVisibility(View.VISIBLE);
+                    lvStajGunler.setVisibility(View.GONE);
+                }
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -180,6 +189,13 @@ public class StajGunlerFragment extends Fragment implements StajGunListeleListen
     public void onDetach() {
         super.onDetach();
         fragmentListener = null;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        /**
+         * TODO : Staj gün düzenlemek için iç sayfaya gidecek.
+         */
     }
 
 }

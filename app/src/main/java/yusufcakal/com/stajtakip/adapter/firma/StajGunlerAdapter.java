@@ -63,12 +63,11 @@ public class StajGunlerAdapter extends BaseAdapter {
         StajGun stajGun = stajGunList.get(i);
 
         tvAciklama.setText(stajGun.getAciklama());
-        tvStajGunTarih.setText(stajGun.getTarih());
+        tvStajGunTarih.setText(stajGun.getTarih().split(" ")[0]);
         tvFirmaOnay.setText("Firma Onay : " + stajGun.getFirmaOnay());
         tvOkulOnay.setText("Okul Onay : " + stajGun.getOkulOnay());
 
         return view1;
-
 
     }
 

@@ -34,16 +34,16 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/btnStajEkle"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnStajGunEkle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/spinner"
-        android:layout_below="@+id/btnBitisTarih"
+        android:layout_alignParentBottom="true"
         android:layout_marginTop="21dp"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:backgroundTint="@color/colorPrimary"
         android:padding="15dp"
-        android:text="@string/send"
+        android:text="@string/stajGunEkle"
         android:textColor="@color/colorWhite" />
 
 </RelativeLayout>
