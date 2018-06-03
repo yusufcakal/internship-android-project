@@ -9,16 +9,31 @@ import java.util.List;
 public class StajGun {
 
     private int stajGunId;
+    private int stajId;
     private String aciklama;
-    private List<String> resimler;
+    private List<StajGunResim> stajGunResimList;
+    private int firmaOnay, okulOnay;
+    private String tarih;
 
-    public StajGun(int stajGunId, String aciklama, List<String> resimler) {
+    public StajGun(int stajGunId, int stajId, String aciklama, List<StajGunResim> stajGunResimList, int firmaOnay, int okulOnay, String tarih) {
         this.stajGunId = stajGunId;
+        this.stajId = stajId;
         this.aciklama = aciklama;
-        this.resimler = resimler;
+        this.stajGunResimList = stajGunResimList;
+        this.firmaOnay = firmaOnay;
+        this.okulOnay = okulOnay;
+        this.tarih = tarih;
     }
 
     public StajGun() {}
+
+    public String getTarih() {
+        return tarih;
+    }
+
+    public void setTarih(String tarih) {
+        this.tarih = tarih;
+    }
 
     public int getStajGunId() {
         return stajGunId;
@@ -26,6 +41,14 @@ public class StajGun {
 
     public void setStajGunId(int stajGunId) {
         this.stajGunId = stajGunId;
+    }
+
+    public int getStajId() {
+        return stajId;
+    }
+
+    public void setStajId(int stajId) {
+        this.stajId = stajId;
     }
 
     public String getAciklama() {
@@ -36,11 +59,27 @@ public class StajGun {
         this.aciklama = aciklama;
     }
 
-    public List<String> getResimler() {
-        return resimler;
+    public List<StajGunResim> getStajGunResimList() {
+        return stajGunResimList;
     }
 
-    public void setResimler(List<String> resimler) {
-        this.resimler = resimler;
+    public void setStajGunResimList(List<StajGunResim> stajGunResimList) {
+        this.stajGunResimList = stajGunResimList;
+    }
+
+    public int getFirmaOnay() {
+        return firmaOnay;
+    }
+
+    public void setFirmaOnay(int firmaOnay) {
+        this.firmaOnay = firmaOnay;
+    }
+
+    public int getOkulOnay() {
+        return okulOnay;
+    }
+
+    public void setOkulOnay(int okulOnay) {
+        this.okulOnay = okulOnay;
     }
 }

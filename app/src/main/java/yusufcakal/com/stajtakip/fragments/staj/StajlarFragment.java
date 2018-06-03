@@ -103,7 +103,6 @@ public class StajlarFragment extends Fragment implements StajListeleListener, Ad
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         fragmentListener.onStart(new StajGunlerFragment(), stajList.get(i));
-        Toast.makeText(getContext(), stajList.get(i).getId() + "", Toast.LENGTH_SHORT).show();
     }
 
     @Override

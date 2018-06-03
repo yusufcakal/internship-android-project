@@ -27,11 +27,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import yusufcakal.com.stajtakip.R;
+import yusufcakal.com.stajtakip.adapter.firma.StajGunlerAdapter;
 import yusufcakal.com.stajtakip.pojo.Staj;
 import yusufcakal.com.stajtakip.pojo.StajGun;
+import yusufcakal.com.stajtakip.pojo.StajGunResim;
 import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.StajGunListeleListener;
 import yusufcakal.com.stajtakip.webservices.services.StajGunlerService;
+import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
+import yusufcakal.com.stajtakip.webservices.util.SharedPrefsUtils;
 
 /**
  * Created by Yusuf on 21.05.2018.
@@ -40,7 +44,6 @@ import yusufcakal.com.stajtakip.webservices.services.StajGunlerService;
 public class StajGunlerFragment extends Fragment implements StajGunListeleListener{
 
     private View view;
-    private List<StajGun> stajGunList;
     private Button btnStajGunEkle;
     private FragmentListener fragmentListener;
     private final Calendar myCalendar = Calendar.getInstance();
@@ -54,8 +57,6 @@ public class StajGunlerFragment extends Fragment implements StajGunListeleListen
         view = inflater.inflate(R.layout.fragment_stajgunler, container, false);
 
         staj = (Staj) getArguments().get("staj");
-
-        stajGunList = new ArrayList<>();
 
         StajGunlerService stajGunlerService = new StajGunlerService(getContext(), this);
         stajGunlerService.stajGunler(staj.getId());
@@ -125,16 +126,42 @@ public class StajGunlerFragment extends Fragment implements StajGunListeleListen
     @Override
     public void onSuccess(String result) {
         try {
-
+            List<StajGun> stajGunList = null;
             JSONObject jsonObject = new JSONObject(result);
             boolean resultFlag = jsonObject.getBoolean("result");
             if (resultFlag){
+                stajGunList = new ArrayList<>();
                 JSONArray gunlerArray = jsonObject.getJSONArray("gunler");
+                for (int i=0; i<gunlerArray.length(); i++){
+                    JSONObject stajGun = gunlerArray.getJSONObject(i);
+                    int stajGunId = stajGun.getInt("id");
+                    int stajId = stajGun.getInt("staj_id");
+                    String tarih = stajGun.getString("staj_tarihi");
+                    String aciklama = stajGun.getString("aciklama");
+                    int firmaOnay = stajGun.getInt("firma_onay");
+                    int okulOnay = stajGun.getInt("okul_onay");
+                    List<StajGunResim> stajGunResimList = new ArrayList<>();
+                    JSONArray stajGunResimler = stajGun.getJSONArray("resimler");
+                    for (int j=0; j<stajGunResimler.length(); j++){
+                        JSONObject stajGunResimObject = stajGunResimler.getJSONObject(j);
+                        int resimId = stajGunResimObject.getInt("id");
+                        String resim = stajGunResimObject.getString("resim");
+                        StajGunResim stajGunResim = new StajGunResim(resimId, resim);
+                        stajGunResimList.add(stajGunResim);
+                    }
+                    StajGun stajGunPojo = new StajGun(stajGunId, stajId, aciklama, stajGunResimList, firmaOnay, okulOnay, tarih);
+                    stajGunList.add(stajGunPojo);
+                }
+                String resimYolu = jsonObject.getString("url");
+                SharedPrefsUtils.setStringPreference(getContext(), "resimYolu", resimYolu);
+
+                StajGunlerAdapter stajGunlerAdapter = new StajGunlerAdapter(getContext(), stajGunList);
+                lvStajGunler.setAdapter(stajGunlerAdapter);
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
     }
 
