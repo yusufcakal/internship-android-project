@@ -42,18 +42,6 @@ public class StajlarFragment extends Fragment implements StajListeleListener, Ad
     private Button btnStajEkle;
     private FragmentListener fragmentListener;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        fragmentListener = (FragmentListener) context;
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        fragmentListener = null;
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -115,5 +103,19 @@ public class StajlarFragment extends Fragment implements StajListeleListener, Ad
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         fragmentListener.onStart(new StajGunlerFragment(), stajList.get(i));
+        Toast.makeText(getContext(), stajList.get(i).getId() + "", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        fragmentListener = (FragmentListener) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        fragmentListener = null;
+    }
+
 }

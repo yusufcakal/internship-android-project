@@ -20,7 +20,7 @@ public class LinkUtil {
 
     public static String stajGunEkleUrl = baseUrl + "Staj/RaporEkle";
 
-    public static String stajGunListeleUrl = baseUrl + "Staj/Listele";
+    public static String stajGunListeleUrl = baseUrl + "Staj/RaporListele";
 
     public static String SESSION_KEY = "session";
 

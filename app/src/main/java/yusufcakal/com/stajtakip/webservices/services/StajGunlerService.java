@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import yusufcakal.com.stajtakip.pojo.Staj;
 import yusufcakal.com.stajtakip.webservices.interfaces.StajEkleListener;
+import yusufcakal.com.stajtakip.webservices.interfaces.StajGunListeleListener;
 import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 import yusufcakal.com.stajtakip.webservices.volley.VolleyClient;
@@ -20,32 +21,32 @@ import yusufcakal.com.stajtakip.webservices.volley.VolleyClient;
  * Created by Yusuf on 8.05.2018.
  */
 
-public class StajGunService {
+public class StajGunlerService {
 
     private RequestQueue requestQueue;
     private Context context;
-    private String url = LinkUtil.stajEkleUrl;
+    private String url = LinkUtil.stajGunListeleUrl;
     private int requestMethod = Request.Method.POST;
-    private StajEkleListener stajEkleListener;
+    private StajGunListeleListener stajGunListeleListener;
 
-    public StajGunService(Context context, final StajEkleListener stajEkleListener) {
+    public StajGunlerService(Context context, final StajGunListeleListener stajGunListeleListener) {
         this.context = context;
         requestQueue = VolleyClient.getInstance(context).getRequestQueue();
-        this.stajEkleListener = stajEkleListener;
+        this.stajGunListeleListener = stajGunListeleListener;
     }
 
-    public void stajEkle(final Staj staj){
+    public void stajGunler(final int staj_id){
         StringRequest stringRequest = new StringRequest(requestMethod, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        stajEkleListener.onSuccessStaj(response);
+                        stajGunListeleListener.onSuccess(response);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        stajEkleListener.onErrorStaj(error);
+                        stajGunListeleListener.onError(error);
                     }
                 }){
             @Override
@@ -53,10 +54,8 @@ public class StajGunService {
                 Map<String,String> params = new HashMap<>();
                 params.put("token", SessionUtil.getToken(context));
                 params.put("kullanici_id", String.valueOf(SessionUtil.getUserId(context)));
-                params.put("bolum_id", String.valueOf(SessionUtil.getBolumId(context)));
-                params.put("baslangic_tarih", staj.getBaslangicTarihi());
-                params.put("bitis_tarih", staj.getBitisTarihi());
-                params.put("firma_id", String.valueOf(staj.getFirmaId()));
+                params.put("staj_id", String.valueOf(staj_id));
+
                 return params;
             }
 

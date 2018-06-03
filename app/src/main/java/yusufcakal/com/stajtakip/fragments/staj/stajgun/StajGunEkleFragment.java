@@ -52,6 +52,7 @@ public class StajGunEkleFragment extends android.support.v4.app.Fragment {
     private TextView tvStajGun;
     private EditText etAciklama;
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

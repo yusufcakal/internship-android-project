@@ -24,4 +24,5 @@
     <string name="send">Staj Ekle</string>
     <string name="stajgunekle">Staj Günü Ekle</string>
     <string name="stajgunaciklama">Staj Günü Açıklama</string>
+    <string name="stajgunyok">Bu Staja Gün Eklenmemiştir.</string>
 </resources>
