@@ -32,6 +32,26 @@
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    
+    <Button
+        android:id="@+id/btnResimEkle"
+        android:layout_below="@+id/etAciklama"
+        android:layout_margin="20dp"
+        android:background="@color/colorPrimary"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorWhite"
+        android:text="@string/add_image"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_toRightOf="@id/btnResimEkle"
+        android:layout_marginTop="20dp"
+        android:id="@+id/imResim"
+        android:layout_below="@+id/etAciklama"
+        android:layout_width="80dp"
+        android:layout_height="100dp" />
 
     <Button
         android:id="@+id/btnStajGunEkle"
