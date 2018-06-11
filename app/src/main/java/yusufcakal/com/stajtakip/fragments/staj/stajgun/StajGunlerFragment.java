@@ -53,6 +53,7 @@ public class StajGunlerFragment extends Fragment implements
     private Staj staj;
     private TextView tvStajGunYok;
     private ListView lvStajGunler;
+    List<StajGun> stajGunList = null;
 
     @Nullable
     @Override
@@ -130,7 +131,7 @@ public class StajGunlerFragment extends Fragment implements
     @Override
     public void onSuccess(String result) {
         try {
-            List<StajGun> stajGunList = null;
+
             JSONObject jsonObject = new JSONObject(result);
             boolean resultFlag = jsonObject.getBoolean("result");
             if (resultFlag){
@@ -196,6 +197,7 @@ public class StajGunlerFragment extends Fragment implements
         /**
          * TODO : Staj gün düzenlemek için iç sayfaya gidecek.
          */
+        Toast.makeText(getContext(), stajGunList.get(i).getAciklama(), Toast.LENGTH_SHORT).show();
     }
 
 }
