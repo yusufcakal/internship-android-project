@@ -28,4 +28,6 @@ public class LinkUtil {
 
     public static String BOLUM_ID = "bolum_id";
 
+    public static String RESIM_YOLU = "resim_yolu";
+
 }

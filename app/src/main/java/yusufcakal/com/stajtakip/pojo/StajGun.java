@@ -1,12 +1,15 @@
 package yusufcakal.com.stajtakip.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 /**
  * Created by Yusuf on 2.06.2018.
  */
 
-public class StajGun {
+public class StajGun implements Parcelable{
 
     private int stajGunId;
     private int stajId;
@@ -81,5 +84,15 @@ public class StajGun {
 
     public void setOkulOnay(int okulOnay) {
         this.okulOnay = okulOnay;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 }

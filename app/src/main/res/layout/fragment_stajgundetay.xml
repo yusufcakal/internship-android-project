@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_margin="20dp"
+        android:text="Staj Günü"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvStajGun"
+        android:layout_margin="20dp"
+        android:layout_alignParentRight="true"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_below="@+id/tvDate"
+        android:id="@+id/tvAciklama"
+        android:background="@drawable/edittext_back"
+        android:padding="9dp"
+        android:lines="8"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:gravity="start"
+        android:hint="@string/stajgunaciklama"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnResimEkle"
+        android:layout_below="@+id/tvAciklama"
+        android:layout_margin="20dp"
+        android:background="@color/colorPrimary"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="@color/colorWhite"
+        android:text="@string/add_image"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_toRightOf="@id/btnResimEkle"
+        android:layout_marginTop="20dp"
+        android:id="@+id/imResim"
+        android:layout_below="@+id/tvAciklama"
+        android:layout_width="80dp"
+        android:layout_height="100dp" />
+
+    <Button
+        android:id="@+id/btnStajGunDuzenle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/spinner"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="21dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:backgroundTint="@color/colorPrimary"
+        android:padding="15dp"
+        android:text="@string/stajGunEkle"
+        android:textColor="@color/colorWhite" />
+
+</RelativeLayout>

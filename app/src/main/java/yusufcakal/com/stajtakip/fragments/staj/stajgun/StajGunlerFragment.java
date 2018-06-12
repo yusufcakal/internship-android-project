@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -35,6 +36,7 @@ import yusufcakal.com.stajtakip.pojo.StajGunResim;
 import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.StajGunListeleListener;
 import yusufcakal.com.stajtakip.webservices.services.StajGunlerService;
+import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 import yusufcakal.com.stajtakip.webservices.util.SharedPrefsUtils;
 
@@ -134,6 +136,8 @@ public class StajGunlerFragment extends Fragment implements
 
             JSONObject jsonObject = new JSONObject(result);
             boolean resultFlag = jsonObject.getBoolean("result");
+            String resimYolu = jsonObject.getString("url");
+            SharedPrefsUtils.setStringPreference(getContext(), LinkUtil.RESIM_YOLU, resimYolu);
             if (resultFlag){
                 stajGunList = new ArrayList<>();
                 JSONArray gunlerArray = jsonObject.getJSONArray("gunler");
@@ -157,8 +161,6 @@ public class StajGunlerFragment extends Fragment implements
                     StajGun stajGunPojo = new StajGun(stajGunId, stajId, aciklama, stajGunResimList, firmaOnay, okulOnay, tarih);
                     stajGunList.add(stajGunPojo);
                 }
-                String resimYolu = jsonObject.getString("url");
-                SharedPrefsUtils.setStringPreference(getContext(), "resimYolu", resimYolu);
 
                 StajGunlerAdapter stajGunlerAdapter = new StajGunlerAdapter(getContext(), stajGunList);
                 lvStajGunler.setAdapter(stajGunlerAdapter);
@@ -194,10 +196,11 @@ public class StajGunlerFragment extends Fragment implements
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        /**
-         * TODO : Staj gün düzenlemek için iç sayfaya gidecek.
-         */
-        Toast.makeText(getContext(), stajGunList.get(i).getAciklama(), Toast.LENGTH_SHORT).show();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("stajGun", stajGunList.get(i));
+        StajGunDetayFragment stajGunDetayFragment = new StajGunDetayFragment();
+        stajGunDetayFragment.setArguments(bundle);
+        fragmentListener.onStart(stajGunDetayFragment);
     }
 
 }
