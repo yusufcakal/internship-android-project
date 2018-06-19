@@ -109,7 +109,7 @@ public class StajGunDetayFragment extends android.support.v4.app.Fragment
                     .into(imResim);
             Toast.makeText(getContext(), resim, Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(getContext(), "Resim Yok", Toast.LENGTH_SHORT).show();
+
         }
 
         return view;
