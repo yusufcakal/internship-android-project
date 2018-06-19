@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity
             if (loginFlag){
                 JSONObject info = jsonObject.getJSONObject("bilgiler");
                 String token = info.getString("token");
+                int rutbe = info.getInt("rutbe");
                 int userId = info.getInt("id");
                 SharedPrefsUtils.setIntegerPreference(this, LinkUtil.USER_ID, userId);
 
@@ -92,7 +93,13 @@ public class MainActivity extends AppCompatActivity
 
                 SharedPrefsUtils.setIntegerPreference(getApplicationContext(), LinkUtil.BOLUM_ID, bolumList.get(0).getId());
                 SessionUtil.start(this, token);
-                startActivity(new Intent(this, DashboardActivity.class));
+
+                if (rutbe == ?){
+                    /**
+                     * TODO: Rütbe değişkenine göre değerlendirilecek.
+                     */
+                    startActivity(new Intent(this, DashboardActivity.class));
+                }
             }else{
                 String error = jsonObject.getString("error");
                 Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
