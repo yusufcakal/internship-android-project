@@ -36,8 +36,15 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (SessionUtil.check(this))
-            startActivity(new Intent(this, DashboardActivity.class));
+        int rutbe = SharedPrefsUtils.getIntegerPreference(this, LinkUtil.RUTBE , -1);
+
+        if (SessionUtil.check(this)){
+            if (rutbe == 1){
+                startActivity(new Intent(this, DashboardActivity.class));
+            }else if (rutbe == 2){
+                startActivity(new Intent(this, FirmaDashboardActivity.class));
+            }
+        }
 
         setTitle(getResources().getText(R.string.login));
 
@@ -91,15 +98,15 @@ public class MainActivity extends AppCompatActivity
                     bolumList.add(bolum);
                 }
 
-                SharedPrefsUtils.setIntegerPreference(getApplicationContext(), LinkUtil.BOLUM_ID, bolumList.get(0).getId());
                 SessionUtil.start(this, token);
 
-                if (rutbe == ?){
-                    /**
-                     * TODO: Rütbe değişkenine göre değerlendirilecek.
-                     */
+                if (rutbe == 1){
+                    SharedPrefsUtils.setIntegerPreference(getApplicationContext(), LinkUtil.BOLUM_ID, bolumList.get(0).getId());
                     startActivity(new Intent(this, DashboardActivity.class));
+                }else if (rutbe == 2){
+                    startActivity(new Intent(this, FirmaDashboardActivity.class));
                 }
+                SharedPrefsUtils.setIntegerPreference(getApplicationContext(), LinkUtil.RUTBE, rutbe);
             }else{
                 String error = jsonObject.getString("error");
                 Toast.makeText(this, error, Toast.LENGTH_SHORT).show();

@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
+import android.util.Log;
 
 import com.heinrichreimersoftware.materialdrawer.DrawerActivity;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
@@ -26,9 +27,11 @@ public class FirmaDashboardActivity extends DrawerActivity implements FragmentLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        Log.e("TOKEN", SessionUtil.getToken(this));
+
         toolbar = getSupportActionBar();
-        setTitle(getResources().getString(R.string.firmalar));
-        openFragment(new FirmalarFragment());
+        setTitle(getResources().getString(R.string.personelIslem));
+        openFragment(new PersonelFragment());
 
         addItem(
                 new DrawerItem()
@@ -37,7 +40,7 @@ public class FirmaDashboardActivity extends DrawerActivity implements FragmentLi
                         .setOnItemClickListener(new DrawerItem.OnItemClickListener() {
                             @Override
                             public void onClick(DrawerItem drawerItem, long id, int position) {
-                                setTitle(getResources().getString(R.string.personel));
+                                setTitle(getResources().getString(R.string.personelIslem));
                                 openFragment(new PersonelFragment());
                                 FirmaDashboardActivity.this.closeDrawer();
                             }

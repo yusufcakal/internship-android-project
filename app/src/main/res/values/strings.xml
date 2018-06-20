@@ -27,5 +27,6 @@
     <string name="stajgunyok">Bu Staja Gün Eklenmemiştir.</string>
     <string name="stajGunEkle">Gün Ekle</string>
     <string name="add_image">Resim Ekle</string>
-    <string name="personel">Personeller</string>
+    <string name="personel">Personel</string>
+    <string name="personelIslem">PERSONEL İŞLEMLERİ</string>
 </resources>

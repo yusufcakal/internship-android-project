@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DashboardActivity" />
+        <activity android:name=".FirmaDashboardActivity" />
     </application>
 
 </manifest>
