@@ -3,4 +3,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/etPersonelMail"
+        android:background="@drawable/edittext_back"
+        android:padding="9dp"
+        android:hint="@string/useramail"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginRight="20dp"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/etPersonelSifre"
+        android:layout_below="@+id/etPersonelMail"
+        android:background="@drawable/edittext_back"
+        android:padding="9dp"
+        android:hint="@string/usersifre"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnPersonelEkle"
+        android:layout_below="@+id/etPersonelSifre"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/personelEkle"
+        android:textColor="@color/colorWhite"
+        android:backgroundTint="@color/colorPrimary"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
 </RelativeLayout>

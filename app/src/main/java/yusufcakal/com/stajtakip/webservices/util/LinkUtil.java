@@ -24,6 +24,9 @@ public class LinkUtil {
 
     public static String personelListeleUrl = baseUrl + "Firma/PersonelListele";
 
+    public static String personelEkleUrl = baseUrl + "Firma/PersonelEkle";
+
+
     public static String SESSION_KEY = "session";
 
     public static String USER_ID = "user_id";

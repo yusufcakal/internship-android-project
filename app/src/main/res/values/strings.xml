@@ -30,4 +30,6 @@
     <string name="personel">Personel</string>
     <string name="personelIslem">PERSONEL İŞLEMLERİ</string>
     <string name="personelEkle">Personel Ekle</string>
+    <string name="useramail">Mail</string>
+    <string name="usersifre">Şifre</string>
 </resources>
