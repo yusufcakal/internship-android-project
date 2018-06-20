@@ -29,4 +29,5 @@
     <string name="add_image">Resim Ekle</string>
     <string name="personel">Personel</string>
     <string name="personelIslem">PERSONEL İŞLEMLERİ</string>
+    <string name="personelEkle">Personel Ekle</string>
 </resources>

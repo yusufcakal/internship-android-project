@@ -6,6 +6,7 @@ package yusufcakal.com.stajtakip.pojo;
 
 public class User {
 
+    private int id;
     private String email, password, token;
 
     public User(String email, String password, String token) {
@@ -15,6 +16,14 @@ public class User {
     }
 
     public User() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {

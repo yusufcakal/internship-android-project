@@ -3,12 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:text="@string/personel"
+    <ListView
+        android:layout_above="@+id/btnPersonelEkle"
+        android:id="@+id/lvPersonel"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+    <Button
+        android:id="@+id/btnPersonelEkle"
+        android:layout_below="@+id/etFirmaMail"
+        android:text="@string/personelEkle"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/colorWhite"
+        android:backgroundTint="@color/colorPrimary"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 </RelativeLayout>

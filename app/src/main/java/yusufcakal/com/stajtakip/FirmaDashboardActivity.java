@@ -16,7 +16,9 @@ import yusufcakal.com.stajtakip.fragments.personel.PersonelFragment;
 import yusufcakal.com.stajtakip.fragments.staj.StajlarFragment;
 import yusufcakal.com.stajtakip.pojo.Staj;
 import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
+import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
+import yusufcakal.com.stajtakip.webservices.util.SharedPrefsUtils;
 
 public class FirmaDashboardActivity extends DrawerActivity implements FragmentListener{
 
@@ -28,6 +30,7 @@ public class FirmaDashboardActivity extends DrawerActivity implements FragmentLi
         setContentView(R.layout.activity_dashboard);
 
         Log.e("TOKEN", SessionUtil.getToken(this));
+        Log.e("KULLANICI İD", String.valueOf(SessionUtil.getUserId(this)));
 
         toolbar = getSupportActionBar();
         setTitle(getResources().getString(R.string.personelIslem));
