@@ -28,7 +28,9 @@ import yusufcakal.com.stajtakip.pojo.User;
 import yusufcakal.com.stajtakip.webservices.interfaces.FirmalarListeleListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.PersonelListeleListener;
+import yusufcakal.com.stajtakip.webservices.interfaces.PersonelSilListener;
 import yusufcakal.com.stajtakip.webservices.services.PersonelService;
+import yusufcakal.com.stajtakip.webservices.services.PersonelSilService;
 
 /**
  * Created by Yusuf on 21.05.2018.
@@ -37,7 +39,8 @@ import yusufcakal.com.stajtakip.webservices.services.PersonelService;
 public class PersonelFragment extends Fragment implements
         View.OnClickListener,
         PersonelListeleListener,
-        AdapterView.OnItemClickListener{
+        AdapterView.OnItemLongClickListener,
+        PersonelSilListener{
 
     private View view;
     private ListView lvPersonel;
@@ -64,7 +67,7 @@ public class PersonelFragment extends Fragment implements
         view = inflater.inflate(R.layout.fragment_personel, container, false);
 
         lvPersonel = view.findViewById(R.id.lvPersonel);
-        lvPersonel.setOnItemClickListener(this);
+        lvPersonel.setOnItemLongClickListener(this);
         btnPersonelEkle = view.findViewById(R.id.btnPersonelEkle);
         btnPersonelEkle.setOnClickListener(this);
 
@@ -114,7 +117,30 @@ public class PersonelFragment extends Fragment implements
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(getActivity(), userList.get(i).getEmail(), Toast.LENGTH_SHORT).show();
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+        PersonelSilService personelSilService = new PersonelSilService(getActivity(), this);
+        personelSilService.personelSil(userList.get(i));
+        return true;
+    }
+
+    @Override
+    public void onSuccessSil(String result) {
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+            boolean resultFlag = jsonObject.getBoolean("result");
+            if (resultFlag){
+                PersonelService personelService = new PersonelService(getActivity(), this);
+                personelService.getPersonel();
+            }else{
+                Toast.makeText(getActivity(), "Bir Hata Oldu.", Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onErrorSil(VolleyError error) {
+        Toast.makeText(getActivity(), String.valueOf(error), Toast.LENGTH_SHORT).show();
     }
 }
