@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -35,7 +36,8 @@ import yusufcakal.com.stajtakip.webservices.services.PersonelService;
 
 public class PersonelFragment extends Fragment implements
         View.OnClickListener,
-        PersonelListeleListener {
+        PersonelListeleListener,
+        AdapterView.OnItemClickListener{
 
     private View view;
     private ListView lvPersonel;
@@ -62,6 +64,7 @@ public class PersonelFragment extends Fragment implements
         view = inflater.inflate(R.layout.fragment_personel, container, false);
 
         lvPersonel = view.findViewById(R.id.lvPersonel);
+        lvPersonel.setOnItemClickListener(this);
         btnPersonelEkle = view.findViewById(R.id.btnPersonelEkle);
         btnPersonelEkle.setOnClickListener(this);
 
@@ -108,5 +111,10 @@ public class PersonelFragment extends Fragment implements
     @Override
     public void onError(VolleyError error) {
         Toast.makeText(getContext(), String.valueOf(error), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Toast.makeText(getActivity(), userList.get(i).getEmail(), Toast.LENGTH_SHORT).show();
     }
 }

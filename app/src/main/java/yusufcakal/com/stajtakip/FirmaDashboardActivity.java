@@ -49,6 +49,19 @@ public class FirmaDashboardActivity extends DrawerActivity implements FragmentLi
                             }
                         })
         );
+        addDivider();
+        addItem(
+                new DrawerItem()
+                        .setImage(getResources().getDrawable(R.drawable.ic_last_page_black_24dp))
+                        .setTextPrimary(getString(R.string.logout))
+                        .setOnItemClickListener(new DrawerItem.OnItemClickListener() {
+                            @Override
+                            public void onClick(DrawerItem drawerItem, long id, int position) {
+                                SessionUtil.stop(FirmaDashboardActivity.this);
+                                startActivity(new Intent(FirmaDashboardActivity.this, MainActivity.class));
+                            }
+                        })
+        );
 
     }
 
