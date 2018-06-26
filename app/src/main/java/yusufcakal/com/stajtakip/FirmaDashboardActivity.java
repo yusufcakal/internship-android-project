@@ -11,6 +11,7 @@ import android.util.Log;
 import com.heinrichreimersoftware.materialdrawer.DrawerActivity;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
 
+import yusufcakal.com.stajtakip.fragments.firma.FirmaStajlarFragment;
 import yusufcakal.com.stajtakip.fragments.firma.FirmalarFragment;
 import yusufcakal.com.stajtakip.fragments.personel.PersonelFragment;
 import yusufcakal.com.stajtakip.fragments.staj.StajlarFragment;
@@ -45,6 +46,19 @@ public class FirmaDashboardActivity extends DrawerActivity implements FragmentLi
                             public void onClick(DrawerItem drawerItem, long id, int position) {
                                 setTitle(getResources().getString(R.string.personelIslem));
                                 openFragment(new PersonelFragment());
+                                FirmaDashboardActivity.this.closeDrawer();
+                            }
+                        })
+        );
+        addItem(
+                new DrawerItem()
+                        .setImage(getResources().getDrawable(R.drawable.ic_home_black_24dp))
+                        .setTextPrimary(getString(R.string.staj))
+                        .setOnItemClickListener(new DrawerItem.OnItemClickListener() {
+                            @Override
+                            public void onClick(DrawerItem drawerItem, long id, int position) {
+                                setTitle(getResources().getString(R.string.stajlar));
+                                openFragment(new FirmaStajlarFragment());
                                 FirmaDashboardActivity.this.closeDrawer();
                             }
                         })
