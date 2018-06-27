@@ -28,6 +28,8 @@ public class LinkUtil {
 
     public static String personelSilUrl = baseUrl + "Firma/PersonelSil";
 
+    public static String firmaStajlarUrl = baseUrl + "Firma/StajListele";
+
     public static String SESSION_KEY = "session";
 
     public static String USER_ID = "user_id";

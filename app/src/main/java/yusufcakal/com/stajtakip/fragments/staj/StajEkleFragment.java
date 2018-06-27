@@ -59,6 +59,7 @@ public class StajEkleFragment extends android.support.v4.app.Fragment implements
     private int firmaId;
     private String strStajBaslangicTarih, strStajBitisTarih;
     private FragmentListener fragmentListener;
+    private Staj staj;
 
     @Nullable
     @Override
@@ -155,6 +156,7 @@ public class StajEkleFragment extends android.support.v4.app.Fragment implements
             updateBitisLabel();
         }else if (view == btnStajEkle){
             stajEkle();
+            Log.e("TARİHLER", "BAŞLANGIÇ : " + staj.getBaslangicTarihi() + " BİTİŞ : " + staj.getBitisTarihi());
         }
     }
 
@@ -185,7 +187,7 @@ public class StajEkleFragment extends android.support.v4.app.Fragment implements
     }
 
     private void stajEkle(){
-        Staj staj = new Staj();
+        staj = new Staj();
         staj.setBaslangicTarihi(strStajBaslangicTarih);
         staj.setBitisTarihi(strStajBitisTarih);
         staj.setFirmaId(firmaId);

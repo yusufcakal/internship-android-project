@@ -12,6 +12,7 @@ public class Staj implements Parcelable {
     private int id, puan, sonuc, firmaId;
     private String baslangicTarihi, bitisTarihi, bolumAdi, firmaAdi;
     private String stajGunTarihi;
+    private String stajyerEposta;
 
     public Staj() {}
 
@@ -47,6 +48,14 @@ public class Staj implements Parcelable {
             return new Staj[size];
         }
     };
+
+    public String getStajyerEposta() {
+        return stajyerEposta;
+    }
+
+    public void setStajyerEposta(String stajyerEposta) {
+        this.stajyerEposta = stajyerEposta;
+    }
 
     public String getStajGunTarihi() {
         return stajGunTarihi;

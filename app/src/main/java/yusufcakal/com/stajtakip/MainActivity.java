@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onSuccess(String result) {
+
         try {
             JSONObject jsonObject = new JSONObject(result);
             boolean loginFlag = jsonObject.getBoolean("result");
