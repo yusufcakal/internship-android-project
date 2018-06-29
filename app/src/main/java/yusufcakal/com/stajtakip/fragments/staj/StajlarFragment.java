@@ -102,6 +102,9 @@ public class StajlarFragment extends Fragment implements StajListeleListener, Ad
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        /**
+         * TODO : Staj a rapor girilebilir ise detaya gitsin. (Eklenecek)
+         */
         fragmentListener.onStart(new StajGunlerFragment(), stajList.get(i));
     }
 
