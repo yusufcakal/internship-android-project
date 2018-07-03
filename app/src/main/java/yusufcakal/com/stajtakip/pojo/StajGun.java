@@ -30,6 +30,27 @@ public class StajGun implements Parcelable{
 
     public StajGun() {}
 
+    protected StajGun(Parcel in) {
+        stajGunId = in.readInt();
+        stajId = in.readInt();
+        aciklama = in.readString();
+        firmaOnay = in.readInt();
+        okulOnay = in.readInt();
+        tarih = in.readString();
+    }
+
+    public static final Creator<StajGun> CREATOR = new Creator<StajGun>() {
+        @Override
+        public StajGun createFromParcel(Parcel in) {
+            return new StajGun(in);
+        }
+
+        @Override
+        public StajGun[] newArray(int size) {
+            return new StajGun[size];
+        }
+    };
+
     public String getTarih() {
         return tarih;
     }
@@ -93,6 +114,11 @@ public class StajGun implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-
+        parcel.writeInt(stajGunId);
+        parcel.writeInt(stajId);
+        parcel.writeString(aciklama);
+        parcel.writeInt(firmaOnay);
+        parcel.writeInt(okulOnay);
+        parcel.writeString(tarih);
     }
 }

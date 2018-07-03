@@ -50,8 +50,6 @@ public class FirmaStajlarFragment extends Fragment
         FirmaStajlarService firmaStajlarService = new FirmaStajlarService(getContext(), this);
         firmaStajlarService.getStajlar();
 
-
-
         return view;
     }
 

@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
                 String token = info.getString("token");
                 int rutbe = info.getInt("rutbe");
                 int userId = info.getInt("id");
-                SharedPrefsUtils.setIntegerPreference(this, LinkUtil.USER_ID, userId);
+
 
                 List<Bolum> bolumList = new ArrayList<>();
 
@@ -98,9 +98,13 @@ public class MainActivity extends AppCompatActivity
                 SessionUtil.start(this, token);
 
                 if (rutbe == 1){
+                    SharedPrefsUtils.setIntegerPreference(this, LinkUtil.USER_ID, userId);
                     SharedPrefsUtils.setIntegerPreference(getApplicationContext(), LinkUtil.BOLUM_ID, bolumList.get(0).getId());
                     startActivity(new Intent(this, DashboardActivity.class));
                 }else if (rutbe == 2){
+                    JSONArray firmalarArray = info.getJSONArray("firmalar");
+                    JSONObject object = firmalarArray.getJSONObject(0);
+                    SharedPrefsUtils.setIntegerPreference(this, LinkUtil.USER_ID, object.getInt("firma_id"));
                     startActivity(new Intent(this, FirmaDashboardActivity.class));
                 }
                 SharedPrefsUtils.setIntegerPreference(getApplicationContext(), LinkUtil.RUTBE, rutbe);

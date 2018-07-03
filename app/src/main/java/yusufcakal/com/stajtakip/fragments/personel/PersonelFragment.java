@@ -125,6 +125,7 @@ public class PersonelFragment extends Fragment implements
 
     @Override
     public void onSuccessSil(String result) {
+        Toast.makeText(getActivity(), result, Toast.LENGTH_SHORT).show();
         try {
             JSONObject jsonObject = new JSONObject(result);
             boolean resultFlag = jsonObject.getBoolean("result");

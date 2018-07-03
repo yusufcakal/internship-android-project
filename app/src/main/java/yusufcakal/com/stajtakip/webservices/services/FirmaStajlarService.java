@@ -55,7 +55,6 @@ public class FirmaStajlarService {
                 Map<String,String> params = new HashMap<>();
                 params.put("token", SessionUtil.getToken(context));
                 params.put("firma_id", String.valueOf(SessionUtil.getUserId(context)));
-                params.put("sonuc", String.valueOf(0));
                 return params;
             }
 
