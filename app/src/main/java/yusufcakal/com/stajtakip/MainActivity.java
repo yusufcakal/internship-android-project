@@ -7,16 +7,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.android.volley.VolleyError;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import yusufcakal.com.stajtakip.pojo.Bolum;
 import yusufcakal.com.stajtakip.pojo.User;
 import yusufcakal.com.stajtakip.webservices.interfaces.LoginListener;
