@@ -14,7 +14,9 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import yusufcakal.com.stajtakip.pojo.StajGun;
 import yusufcakal.com.stajtakip.webservices.interfaces.StajGunEkleListener;
@@ -43,7 +45,7 @@ public class StajGunEkleService {
     }
 
     public void gunEkle(final StajGun stajGun, final Bitmap resim){
-        VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(com.android.volley.Request.Method.POST, url, new Response.Listener<NetworkResponse>() {
+        VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(requestMethod, url, new Response.Listener<NetworkResponse>() {
 
             @Override
             public void onResponse(NetworkResponse response) {
@@ -72,7 +74,7 @@ public class StajGunEkleService {
             protected Map<String, DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
                 if (resim != null){
-                    params.put("image", new DataPart("image.jpg", AppHelper.getFileDataFromDrawable(context, resim), "image/jpeg"));
+                    params.put("resimler[]", new DataPart("image.jpg", AppHelper.getFileDataFromDrawable(context, resim), "image/jpeg"));
                 }
                 return params;
             }

@@ -46,7 +46,8 @@ public class StajGunDetayFragment extends android.support.v4.app.Fragment
 
     private View view;
     private String tarih;
-    private TextView tvStajGun, tvAciklama;
+    private TextView tvStajGun;
+    private TextView tvAciklama;
     private Button btnStajGunDuzenle, btnResimEkle;
     private ImageView imResim;
     private Bitmap selectedImage;
@@ -69,7 +70,7 @@ public class StajGunDetayFragment extends android.support.v4.app.Fragment
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_stajgundetay, container, false);
+        view = inflater.inflate(R.layout.fragment_stajgundetayview, container, false);
 
         stajGun = (StajGun) getArguments().get("stajGun");
         tarih = stajGun.getTarih();
@@ -80,9 +81,6 @@ public class StajGunDetayFragment extends android.support.v4.app.Fragment
         btnStajGunDuzenle = view.findViewById(R.id.btnStajGunDuzenle);
         btnResimEkle = view.findViewById(R.id.btnResimEkle);
         imResim = view.findViewById(R.id.imResim);
-
-        btnStajGunDuzenle.setOnClickListener(this);
-        btnResimEkle.setOnClickListener(this);
 
         String date = stajGun.getTarih().split(" ")[0];
 
@@ -97,20 +95,14 @@ public class StajGunDetayFragment extends android.support.v4.app.Fragment
 
         tvStajGun.setText(dateLast);
         tvAciklama.setText(stajGun.getAciklama());
-
-        String resim = SharedPrefsUtils.getStringPreference(getContext(), LinkUtil.RESIM_YOLU);
-
-        if (stajGun.getStajGunResimList().size() != 0){
-            resim += stajGun.getStajGunResimList().get(0).getResim();
-            Picasso.get()
-                    .load(resim)
-                    .resize(80, 100)
-                    .centerCrop()
-                    .into(imResim);
-            Toast.makeText(getContext(), resim, Toast.LENGTH_SHORT).show();
-        }else{
-
+        try {
+            Log.e("RESİM DETAY", stajGun.getStajGunResimList().get(0).getResim());
+            String resim = stajGun.getImagePath() + stajGun.getStajGunResimList().get(0).getResim();
+            Picasso.get().load(resim).into(imResim);
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
 
         return view;
     }

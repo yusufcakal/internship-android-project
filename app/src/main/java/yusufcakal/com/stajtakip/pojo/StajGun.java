@@ -17,6 +17,7 @@ public class StajGun implements Parcelable{
     private List<StajGunResim> stajGunResimList;
     private int firmaOnay, okulOnay;
     private String tarih;
+    private String imagePath;
 
     public StajGun(int stajGunId, int stajId, String aciklama, List<StajGunResim> stajGunResimList, int firmaOnay, int okulOnay, String tarih) {
         this.stajGunId = stajGunId;
@@ -50,6 +51,14 @@ public class StajGun implements Parcelable{
             return new StajGun[size];
         }
     };
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     public String getTarih() {
         return tarih;

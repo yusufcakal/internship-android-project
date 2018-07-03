@@ -62,6 +62,8 @@ public class StajGunlerFragment extends Fragment implements
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_stajgunler, container, false);
 
+        Log.e("Kullanıcı Id", String.valueOf(SessionUtil.getUserId(getContext())));
+
         staj = (Staj) getArguments().get("staj");
 
         StajGunlerService stajGunlerService = new StajGunlerService(getContext(), this);
@@ -159,6 +161,7 @@ public class StajGunlerFragment extends Fragment implements
                         stajGunResimList.add(stajGunResim);
                     }
                     StajGun stajGunPojo = new StajGun(stajGunId, stajId, aciklama, stajGunResimList, firmaOnay, okulOnay, tarih);
+                    stajGunPojo.setImagePath(resimYolu);
                     stajGunList.add(stajGunPojo);
                 }
 
