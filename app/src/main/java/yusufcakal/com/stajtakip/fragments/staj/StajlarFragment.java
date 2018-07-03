@@ -12,17 +12,12 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.android.volley.VolleyError;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import yusufcakal.com.stajtakip.R;
 import yusufcakal.com.stajtakip.adapter.firma.StajAdapter;
 import yusufcakal.com.stajtakip.fragments.staj.stajgun.StajGunlerFragment;

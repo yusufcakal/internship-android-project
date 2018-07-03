@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
+import android.widget.Button;
 
 import com.heinrichreimersoftware.materialdrawer.DrawerActivity;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
@@ -126,7 +127,10 @@ public class FirmaDashboardActivity extends DrawerActivity implements FragmentLi
 
     @Override
     public void onStart(Fragment fragment, Staj staj) {
-
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("staj", staj);
+        fragment.setArguments(bundle);
+        openFragment(fragment);
     }
 
 }

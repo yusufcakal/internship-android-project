@@ -1,8 +1,10 @@
 package yusufcakal.com.stajtakip.fragments.firma;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +23,11 @@ import java.util.List;
 
 import yusufcakal.com.stajtakip.R;
 import yusufcakal.com.stajtakip.adapter.firma.StajAdapter;
+import yusufcakal.com.stajtakip.fragments.staj.stajgun.FirmaStajGunlerFragment;
+import yusufcakal.com.stajtakip.fragments.staj.stajgun.StajGunlerFragment;
 import yusufcakal.com.stajtakip.pojo.Staj;
 import yusufcakal.com.stajtakip.webservices.interfaces.FirmaStajlarListener;
+import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
 import yusufcakal.com.stajtakip.webservices.services.FirmaStajlarService;
 
 /**
@@ -37,6 +42,19 @@ public class FirmaStajlarFragment extends Fragment
     private ListView lvStajlar;
     private Staj staj;
     private List<Staj> stajList;
+    private FragmentListener fragmentListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        fragmentListener = (FragmentListener) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        fragmentListener = null;
+    }
 
     @Nullable
     @Override
@@ -90,6 +108,6 @@ public class FirmaStajlarFragment extends Fragment
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(getContext(), stajList.get(i).getFirmaAdi(), Toast.LENGTH_SHORT).show();
+        fragmentListener.onStart(new FirmaStajGunlerFragment(), stajList.get(i));
     }
 }
