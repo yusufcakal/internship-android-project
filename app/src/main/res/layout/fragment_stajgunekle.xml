@@ -54,7 +54,7 @@
         android:layout_height="100dp" />
 
     <Button
-        android:id="@+id/btnStajGunEkle"
+        android:id="@+id/btnStajGunEkleButon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/spinner"

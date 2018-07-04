@@ -55,7 +55,8 @@ public class StajGunlerFragment extends Fragment implements
     private Staj staj;
     private TextView tvStajGunYok;
     private ListView lvStajGunler;
-    List<StajGun> stajGunList = null;
+    private List<StajGun> stajGunList = null;
+    private StajGunlerAdapter stajGunlerAdapter;
 
     @Nullable
     @Override
@@ -165,7 +166,7 @@ public class StajGunlerFragment extends Fragment implements
                     stajGunList.add(stajGunPojo);
                 }
 
-                StajGunlerAdapter stajGunlerAdapter = new StajGunlerAdapter(getContext(), stajGunList);
+                stajGunlerAdapter = new StajGunlerAdapter(getContext(), stajGunList);
                 lvStajGunler.setAdapter(stajGunlerAdapter);
 
                 if (stajGunList.size() == 0){

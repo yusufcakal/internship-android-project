@@ -28,6 +28,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import yusufcakal.com.stajtakip.R;
+import yusufcakal.com.stajtakip.adapter.firma.FirmaStajGunlerAdapter;
 import yusufcakal.com.stajtakip.adapter.firma.StajGunlerAdapter;
 import yusufcakal.com.stajtakip.pojo.Staj;
 import yusufcakal.com.stajtakip.pojo.StajGun;
@@ -45,7 +46,8 @@ import yusufcakal.com.stajtakip.webservices.util.SharedPrefsUtils;
 
 public class FirmaStajGunlerFragment extends Fragment implements
         StajGunListeleListener,
-        AdapterView.OnItemClickListener{
+        AdapterView.OnItemClickListener,
+        AdapterView.OnItemLongClickListener{
 
     private View view;
     private FragmentListener fragmentListener;
@@ -54,6 +56,7 @@ public class FirmaStajGunlerFragment extends Fragment implements
     private TextView tvStajGunYok;
     private ListView lvStajGunler;
     List<StajGun> stajGunList = null;
+    private FirmaStajGunlerAdapter firmaStajGunlerAdapter;
 
     @Nullable
     @Override
@@ -70,6 +73,7 @@ public class FirmaStajGunlerFragment extends Fragment implements
         tvStajGunYok = view.findViewById(R.id.tvStajGunYok);
         lvStajGunler = view.findViewById(R.id.lvStajGunler);
         lvStajGunler.setOnItemClickListener(this);
+        lvStajGunler.setOnItemLongClickListener(this);
 
         return view;
     }
@@ -119,8 +123,8 @@ public class FirmaStajGunlerFragment extends Fragment implements
                     stajGunList.add(stajGunPojo);
                 }
 
-                StajGunlerAdapter stajGunlerAdapter = new StajGunlerAdapter(getContext(), stajGunList);
-                lvStajGunler.setAdapter(stajGunlerAdapter);
+                firmaStajGunlerAdapter = new FirmaStajGunlerAdapter(getContext(), stajGunList);
+                lvStajGunler.setAdapter(firmaStajGunlerAdapter);
 
                 if (stajGunList.size() == 0){
                     tvStajGunYok.setVisibility(View.VISIBLE);
@@ -153,11 +157,26 @@ public class FirmaStajGunlerFragment extends Fragment implements
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        StajGun stajGun = stajGunList.get(i);
+        if (stajGun.isSelected()){
+            stajGun.setSelected(false);
+        }else{
+            stajGun.setSelected(true);
+        }
+
+        stajGunList.set(i, stajGun);
+        firmaStajGunlerAdapter.refreshData(stajGunList);
+
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
         Bundle bundle = new Bundle();
         bundle.putParcelable("stajGun", stajGunList.get(i));
         StajGunDetayFragment stajGunDetayFragment = new StajGunDetayFragment();
         stajGunDetayFragment.setArguments(bundle);
         fragmentListener.onStart(stajGunDetayFragment);
+        return false;
     }
-
 }

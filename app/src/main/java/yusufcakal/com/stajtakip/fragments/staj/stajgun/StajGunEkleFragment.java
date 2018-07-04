@@ -43,7 +43,7 @@ public class StajGunEkleFragment extends android.support.v4.app.Fragment
     private String tarih;
     private TextView tvStajGun;
     private EditText etAciklama;
-    private Button btnStajGunEkle, btnResimEkle;
+    private Button btnStajGunEkleButon, btnResimEkle;
     private ImageView imResim;
     private Bitmap selectedImage;
     private StajGun stajGun;
@@ -83,11 +83,11 @@ public class StajGunEkleFragment extends android.support.v4.app.Fragment
         tvStajGun = view.findViewById(R.id.tvStajGun);
         etAciklama = view.findViewById(R.id.etAciklama);
 
-        btnStajGunEkle = view.findViewById(R.id.btnStajGunEkle);
+        btnStajGunEkleButon = view.findViewById(R.id.btnStajGunEkleButon);
         btnResimEkle = view.findViewById(R.id.btnResimEkle);
         imResim = view.findViewById(R.id.imResim);
 
-        btnStajGunEkle.setOnClickListener(this);
+        btnStajGunEkleButon.setOnClickListener(this);
         btnResimEkle.setOnClickListener(this);
 
         tvStajGun.setText(staj.getStajGunTarihi());
@@ -106,7 +106,7 @@ public class StajGunEkleFragment extends android.support.v4.app.Fragment
 
     @Override
     public void onClick(View view) {
-        if (view == btnStajGunEkle){
+        if (view == btnStajGunEkleButon){
             String aciklama = etAciklama.getText().toString();
             if (aciklama.equals("")){
                 Toast.makeText(getContext(), "Boş Bırakmayınız.", Toast.LENGTH_SHORT).show();

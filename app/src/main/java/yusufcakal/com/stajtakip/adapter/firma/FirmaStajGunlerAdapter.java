@@ -11,20 +11,19 @@ import android.widget.TextView;
 import java.util.List;
 
 import yusufcakal.com.stajtakip.R;
-import yusufcakal.com.stajtakip.pojo.Staj;
 import yusufcakal.com.stajtakip.pojo.StajGun;
 
 /**
  * Created by Yusuf on 21.05.2018.
  */
 
-public class StajGunlerAdapter extends BaseAdapter {
+public class FirmaStajGunlerAdapter extends BaseAdapter {
 
     LayoutInflater layoutInflater;
     List<StajGun> stajGunList;
     Context context;
 
-    public StajGunlerAdapter(Context context , List<StajGun> stajGunList){
+    public FirmaStajGunlerAdapter(Context context , List<StajGun> stajGunList){
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.context = context;
         this.stajGunList = stajGunList;
@@ -45,13 +44,18 @@ public class StajGunlerAdapter extends BaseAdapter {
         return i;
     }
 
+    public void refreshData(List<StajGun> stajGunList){
+        this.stajGunList = stajGunList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         View view1;
 
         if (view == null) {
             view1 = new View(context);
-            view1 = layoutInflater.inflate(R.layout.staj_gunler_item, null);
+            view1 = layoutInflater.inflate(R.layout.firma_staj_gunler_item, null);
         } else {
             view1 = view;
         }
@@ -60,10 +64,17 @@ public class StajGunlerAdapter extends BaseAdapter {
         TextView tvStajGunTarih = view1.findViewById(R.id.tvStajGunTarih);
         TextView tvFirmaOnay = view1.findViewById(R.id.tvFirmaOnay);
         TextView tvOkulOnay = view1.findViewById(R.id.tvOkulOnay);
+        ImageView imItemSelect = view1.findViewById(R.id.imItemSelect);
 
         StajGun stajGun = stajGunList.get(i);
 
-        if (stajGun.getAciklama().length() >= 20){
+        if (stajGun.isSelected()){
+            imItemSelect.setBackgroundResource(R.drawable.checked);
+        }else{
+            imItemSelect.setBackgroundResource(R.drawable.check);
+        }
+
+        if (stajGun.getAciklama().length() >= 40){
             tvAciklama.setText(stajGun.getAciklama().substring(0, 20)+ "..");
         }else{
             tvAciklama.setText(stajGun.getAciklama());
@@ -72,6 +83,8 @@ public class StajGunlerAdapter extends BaseAdapter {
         tvStajGunTarih.setText(stajGun.getTarih().split(" ")[0]);
         tvFirmaOnay.setText("Firma Onay : " + stajGun.getFirmaOnay());
         tvOkulOnay.setText("Okul Onay : " + stajGun.getOkulOnay());
+        tvFirmaOnay.setVisibility(View.GONE);
+        tvOkulOnay.setVisibility(View.GONE);
 
         return view1;
 

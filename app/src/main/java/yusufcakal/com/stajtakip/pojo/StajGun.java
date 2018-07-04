@@ -18,6 +18,7 @@ public class StajGun implements Parcelable{
     private int firmaOnay, okulOnay;
     private String tarih;
     private String imagePath;
+    private boolean isSelected = false;
 
     public StajGun(int stajGunId, int stajId, String aciklama, List<StajGunResim> stajGunResimList, int firmaOnay, int okulOnay, String tarih) {
         this.stajGunId = stajGunId;
@@ -51,6 +52,14 @@ public class StajGun implements Parcelable{
             return new StajGun[size];
         }
     };
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
     public String getImagePath() {
         return imagePath;
