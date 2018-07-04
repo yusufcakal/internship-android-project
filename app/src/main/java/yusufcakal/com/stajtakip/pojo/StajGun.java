@@ -11,6 +11,7 @@ import java.util.List;
 
 public class StajGun implements Parcelable{
 
+
     private int stajGunId;
     private int stajId;
     private String aciklama;

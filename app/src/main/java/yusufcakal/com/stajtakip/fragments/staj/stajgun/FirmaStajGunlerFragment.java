@@ -1,8 +1,10 @@
 package yusufcakal.com.stajtakip.fragments.staj.stajgun;
 
+import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -26,6 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import yusufcakal.com.stajtakip.R;
 import yusufcakal.com.stajtakip.adapter.firma.FirmaStajGunlerAdapter;
@@ -55,8 +58,9 @@ public class FirmaStajGunlerFragment extends Fragment implements
     private Staj staj;
     private TextView tvStajGunYok;
     private ListView lvStajGunler;
-    List<StajGun> stajGunList = null;
+    private List<StajGun> stajGunList = null;
     private FirmaStajGunlerAdapter firmaStajGunlerAdapter;
+    private List<Integer> stajGunOnayIdList;
 
     @Nullable
     @Override
@@ -74,6 +78,8 @@ public class FirmaStajGunlerFragment extends Fragment implements
         lvStajGunler = view.findViewById(R.id.lvStajGunler);
         lvStajGunler.setOnItemClickListener(this);
         lvStajGunler.setOnItemLongClickListener(this);
+
+        stajGunOnayIdList = new ArrayList<>();
 
         return view;
     }
@@ -155,6 +161,7 @@ public class FirmaStajGunlerFragment extends Fragment implements
         fragmentListener = null;
     }
 
+    @TargetApi(Build.VERSION_CODES.N)
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
@@ -168,6 +175,17 @@ public class FirmaStajGunlerFragment extends Fragment implements
         stajGunList.set(i, stajGun);
         firmaStajGunlerAdapter.refreshData(stajGunList);
 
+        if (stajGunList.get(i).isSelected()){
+            stajGunOnayIdList.add(stajGunList.get(i).getStajGunId());
+        }else{
+            //stajGunOnayIdList.remove();
+            stajGunOnayIdList.remove(stajGunOnayIdList.indexOf(stajGunList.get(i).getStajGunId()));
+        }
+
+        /**
+         * TODO : Staj gün id leri listeye aktardım.
+         */
+        Toast.makeText(getContext(), String.valueOf(stajGunOnayIdList), Toast.LENGTH_SHORT).show();
     }
 
     @Override
