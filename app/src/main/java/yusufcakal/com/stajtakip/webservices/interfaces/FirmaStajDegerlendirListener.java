@@ -8,7 +8,7 @@ import com.android.volley.VolleyError;
 
 public interface FirmaStajDegerlendirListener {
 
-    void onSuccess(String result);
-    void onError(VolleyError error);
+    void onSuccessDegerlendir(String result);
+    void onErrorDegerlendir(VolleyError error);
 
 }

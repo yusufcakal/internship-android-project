@@ -40,8 +40,10 @@ import yusufcakal.com.stajtakip.adapter.firma.StajGunlerAdapter;
 import yusufcakal.com.stajtakip.pojo.Staj;
 import yusufcakal.com.stajtakip.pojo.StajGun;
 import yusufcakal.com.stajtakip.pojo.StajGunResim;
+import yusufcakal.com.stajtakip.webservices.interfaces.FirmaStajDegerlendirListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.StajGunListeleListener;
+import yusufcakal.com.stajtakip.webservices.services.FirmaStajDegerlendirService;
 import yusufcakal.com.stajtakip.webservices.services.StajGunlerService;
 import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
@@ -55,7 +57,8 @@ public class FirmaStajGunlerFragment extends Fragment implements
         StajGunListeleListener,
         AdapterView.OnItemClickListener,
         AdapterView.OnItemLongClickListener,
-        View.OnClickListener{
+        View.OnClickListener,
+        FirmaStajDegerlendirListener{
 
     private View view;
     private FragmentListener fragmentListener;
@@ -67,6 +70,10 @@ public class FirmaStajGunlerFragment extends Fragment implements
     private FirmaStajGunlerAdapter firmaStajGunlerAdapter;
     private List<Integer> stajGunOnayIdList;
     private Button btnStajResult;
+    private Dialog dialog;
+    private Button btnStajDegerlendirGonder;
+    private Spinner spinnerStajDevam, spinnerStajCalisma, spinnerIsZamaninda, spinnerIsTutumu;
+    private int stajPuan = 0;
 
     @Nullable
     @Override
@@ -74,6 +81,28 @@ public class FirmaStajGunlerFragment extends Fragment implements
         view = inflater.inflate(R.layout.fragment_firmastajgunler, container, false);
 
         Log.e("Kullanıcı Id", String.valueOf(SessionUtil.getUserId(getContext())));
+
+        dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.firma_staj_degerlendir_dialog);
+
+        btnStajDegerlendirGonder = dialog.findViewById(R.id.btnStajDegerlendirGonder);
+
+        spinnerStajDevam = dialog.findViewById(R.id.spinnerStajDevam);
+        spinnerStajCalisma = dialog.findViewById(R.id.spinnerStajCalisma);
+        spinnerIsZamaninda = dialog.findViewById(R.id.spinnerIsZamaninda);
+        spinnerIsTutumu = dialog.findViewById(R.id.spinnerIsTutumu);
+
+        String[] spinner_layout = getResources().getStringArray(R.array.staj_deger);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                getActivity(),
+                android.R.layout.simple_spinner_item,
+                spinner_layout
+        );
+
+        spinnerStajDevam.setAdapter(adapter);
+        spinnerStajCalisma.setAdapter(adapter);
+        spinnerIsZamaninda.setAdapter(adapter);
+        spinnerIsTutumu.setAdapter(adapter);
 
         staj = (Staj) getArguments().get("staj");
 
@@ -84,6 +113,7 @@ public class FirmaStajGunlerFragment extends Fragment implements
         lvStajGunler = view.findViewById(R.id.lvStajGunler);
         btnStajResult = view.findViewById(R.id.btnStajResult);
         btnStajResult.setOnClickListener(this);
+        btnStajDegerlendirGonder.setOnClickListener(this);
         lvStajGunler.setOnItemClickListener(this);
         lvStajGunler.setOnItemLongClickListener(this);
 
@@ -208,40 +238,31 @@ public class FirmaStajGunlerFragment extends Fragment implements
 
     @Override
     public void onClick(View view) {
-        final Dialog dialog = new Dialog(getContext());
-        dialog.setContentView(R.layout.firma_staj_degerlendir_dialog);
-        dialog.show();
+        if (view.equals(btnStajResult)){
+            dialog.show();
+        }else if (view.equals(btnStajDegerlendirGonder)){
 
-        Spinner spinnerStajDevam = dialog.findViewById(R.id.spinnerStajDevam);
-        Spinner spinnerStajCalisma = dialog.findViewById(R.id.spinnerStajCalisma);
-        Spinner spinnerIsZamaninda = dialog.findViewById(R.id.spinnerIsZamaninda);
-        Spinner spinnerIsTutumu = dialog.findViewById(R.id.spinnerIsTutumu);
-        Button btnStajDegerlendirGonder = dialog.findViewById(R.id.btnStajDegerlendirGonder);
+            String stajDevamPuan = spinnerStajDevam.getSelectedItem().toString();
+            String stajCalismaPuan = spinnerStajCalisma.getSelectedItem().toString();
+            String stajZamanindaPuan = spinnerIsZamaninda.getSelectedItem().toString();
+            String stajTutumPuan = spinnerIsTutumu.getSelectedItem().toString();
 
-        String[] spinner_layout = getResources().getStringArray(R.array.staj_deger);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                getActivity(),
-                android.R.layout.simple_spinner_item,
-                spinner_layout
-        );
+            stajPuan = Integer.parseInt(stajDevamPuan + stajCalismaPuan + stajZamanindaPuan + stajTutumPuan);
 
-        spinnerStajDevam.setAdapter(adapter);
-        spinnerStajCalisma.setAdapter(adapter);
-        spinnerIsZamaninda.setAdapter(adapter);
-        spinnerIsTutumu.setAdapter(adapter);
-
-        String stajDevamPuan = spinnerStajDevam.getSelectedItem().toString();
-        String stajCalismaPuan = spinnerStajCalisma.getSelectedItem().toString();
-        String stajZamanindaPuan = spinnerIsZamaninda.getSelectedItem().toString();
-        String stajTutumPuan = spinnerIsTutumu.getSelectedItem().toString();
-
-        btnStajDegerlendirGonder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-
-            }
-        });
+            FirmaStajDegerlendirService firmaStajDegerlendirService = new FirmaStajDegerlendirService(getContext(), this);
+            firmaStajDegerlendirService.stajDegerlendir(stajPuan, stajGunOnayIdList, staj.getId());
+        }
 
     }
+
+    @Override
+    public void onSuccessDegerlendir(String result) {
+        Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onErrorDegerlendir(VolleyError error) {
+        Toast.makeText(getContext(), String.valueOf(error), Toast.LENGTH_SHORT).show();
+    }
+
 }

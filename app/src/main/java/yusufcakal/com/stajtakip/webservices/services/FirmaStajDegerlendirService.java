@@ -43,13 +43,13 @@ public class FirmaStajDegerlendirService {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        firmaStajDegerlendirListener.onSuccess(response);
+                        firmaStajDegerlendirListener.onSuccessDegerlendir(response);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        firmaStajDegerlendirListener.onError(error);
+                        firmaStajDegerlendirListener.onErrorDegerlendir(error);
                     }
                 }){
             @Override

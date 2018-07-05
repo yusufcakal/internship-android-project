@@ -108,6 +108,10 @@ public class FirmaStajlarFragment extends Fragment
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        fragmentListener.onStart(new FirmaStajGunlerFragment(), stajList.get(i));
+        if (stajList.get(i).getSonuc() == 4){
+            Toast.makeText(getContext(), "Bu staj zaten değerlendirildi.", Toast.LENGTH_SHORT).show();
+        }else{
+            fragmentListener.onStart(new FirmaStajGunlerFragment(), stajList.get(i));
+        }
     }
 }
