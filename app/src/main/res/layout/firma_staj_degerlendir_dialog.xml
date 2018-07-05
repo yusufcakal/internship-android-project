@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_margin="10dp"
+        android:id="@+id/tvDevam"
+        android:text="@string/devam_durumu"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:layout_margin="10dp"
+        android:textAlignment="center"
+        android:dropDownWidth="wrap_content"
+        android:id="@+id/spinnerStajDevam"
+        android:layout_toRightOf="@+id/tvDevam"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </Spinner>
+
+    <TextView
+        android:layout_margin="10dp"
+        android:id="@+id/tvCalisma"
+        android:layout_below="@+id/tvDevam"
+        android:text="@string/calisma_gayret"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:layout_margin="10dp"
+        android:textAlignment="center"
+        android:dropDownWidth="wrap_content"
+        android:id="@+id/spinnerStajCalisma"
+        android:layout_toRightOf="@+id/tvCalisma"
+        android:layout_below="@+id/spinnerStajDevam"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </Spinner>
+
+    <TextView
+        android:layout_margin="10dp"
+        android:id="@+id/tvIsYapma"
+        android:layout_below="@+id/tvCalisma"
+        android:text="@string/tam_yapma"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:layout_margin="10dp"
+        android:textAlignment="center"
+        android:dropDownWidth="wrap_content"
+        android:id="@+id/spinnerIsZamaninda"
+        android:layout_toRightOf="@+id/tvCalisma"
+        android:layout_below="@+id/spinnerStajCalisma"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </Spinner>
+
+    <TextView
+        android:layout_margin="10dp"
+        android:id="@+id/tvIsTutumu"
+        android:layout_below="@+id/tvIsYapma"
+        android:text="@string/is_tutumu"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:layout_margin="10dp"
+        android:textAlignment="center"
+        android:dropDownWidth="wrap_content"
+        android:id="@+id/spinnerIsTutumu"
+        android:layout_toRightOf="@+id/tvCalisma"
+        android:layout_below="@+id/spinnerIsZamaninda"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </Spinner>
+
+    <Button
+        android:id="@+id/btnStajDegerlendirGonder"
+        android:layout_below="@+id/spinnerIsTutumu"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/staj_degerlendir"
+        android:textColor="@color/colorWhite"
+        android:backgroundTint="@color/colorPrimary"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

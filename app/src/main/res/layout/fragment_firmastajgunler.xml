@@ -18,6 +18,17 @@
         android:divider="@null"
         android:dividerHeight="0dp"
         android:layout_width="match_parent"
+        android:layout_above="@+id/btnStajResult"
         android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/btnStajResult"
+        android:text="@string/stajdegerlendir"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/colorWhite"
+        android:backgroundTint="@color/colorPrimary"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

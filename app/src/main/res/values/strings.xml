@@ -32,4 +32,19 @@
     <string name="personelEkle">Personel Ekle</string>
     <string name="useramail">Mail</string>
     <string name="usersifre">Şifre</string>
+    <string name="stajdegerlendir">STAJI DEĞERLENDİR</string>
+    <string name="devam_durumu">İŞ DEVAM DURUMU</string>
+    <string name="calisma_gayret">ÇALIŞMA GAYRETİ</string>
+    <string name="tam_yapma">ZAMANINDA YAPMA</string>
+    <string name="is_tutumu">İŞYERİNDEKİ TUTUMU</string>
+    <string name="staj_degerlendir">STAJI KAYDET</string>
+
+    <string-array name="staj_deger">
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+    </string-array>
+
 </resources>

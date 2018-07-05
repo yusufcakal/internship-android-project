@@ -2,6 +2,7 @@ package yusufcakal.com.stajtakip.fragments.staj.stajgun;
 
 import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
@@ -13,9 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,7 +54,8 @@ import yusufcakal.com.stajtakip.webservices.util.SharedPrefsUtils;
 public class FirmaStajGunlerFragment extends Fragment implements
         StajGunListeleListener,
         AdapterView.OnItemClickListener,
-        AdapterView.OnItemLongClickListener{
+        AdapterView.OnItemLongClickListener,
+        View.OnClickListener{
 
     private View view;
     private FragmentListener fragmentListener;
@@ -61,6 +66,7 @@ public class FirmaStajGunlerFragment extends Fragment implements
     private List<StajGun> stajGunList = null;
     private FirmaStajGunlerAdapter firmaStajGunlerAdapter;
     private List<Integer> stajGunOnayIdList;
+    private Button btnStajResult;
 
     @Nullable
     @Override
@@ -76,6 +82,8 @@ public class FirmaStajGunlerFragment extends Fragment implements
 
         tvStajGunYok = view.findViewById(R.id.tvStajGunYok);
         lvStajGunler = view.findViewById(R.id.lvStajGunler);
+        btnStajResult = view.findViewById(R.id.btnStajResult);
+        btnStajResult.setOnClickListener(this);
         lvStajGunler.setOnItemClickListener(this);
         lvStajGunler.setOnItemLongClickListener(this);
 
@@ -196,5 +204,44 @@ public class FirmaStajGunlerFragment extends Fragment implements
         stajGunDetayFragment.setArguments(bundle);
         fragmentListener.onStart(stajGunDetayFragment);
         return false;
+    }
+
+    @Override
+    public void onClick(View view) {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.firma_staj_degerlendir_dialog);
+        dialog.show();
+
+        Spinner spinnerStajDevam = dialog.findViewById(R.id.spinnerStajDevam);
+        Spinner spinnerStajCalisma = dialog.findViewById(R.id.spinnerStajCalisma);
+        Spinner spinnerIsZamaninda = dialog.findViewById(R.id.spinnerIsZamaninda);
+        Spinner spinnerIsTutumu = dialog.findViewById(R.id.spinnerIsTutumu);
+        Button btnStajDegerlendirGonder = dialog.findViewById(R.id.btnStajDegerlendirGonder);
+
+        String[] spinner_layout = getResources().getStringArray(R.array.staj_deger);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                getActivity(),
+                android.R.layout.simple_spinner_item,
+                spinner_layout
+        );
+
+        spinnerStajDevam.setAdapter(adapter);
+        spinnerStajCalisma.setAdapter(adapter);
+        spinnerIsZamaninda.setAdapter(adapter);
+        spinnerIsTutumu.setAdapter(adapter);
+
+        String stajDevamPuan = spinnerStajDevam.getSelectedItem().toString();
+        String stajCalismaPuan = spinnerStajCalisma.getSelectedItem().toString();
+        String stajZamanindaPuan = spinnerIsZamaninda.getSelectedItem().toString();
+        String stajTutumPuan = spinnerIsTutumu.getSelectedItem().toString();
+
+        btnStajDegerlendirGonder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+
+            }
+        });
+
     }
 }
