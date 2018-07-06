@@ -17,6 +17,7 @@
         android:id="@+id/lvStajGunler"
         android:divider="@null"
         android:dividerHeight="0dp"
+        android:layout_above="@+id/btnStajGunEkle"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

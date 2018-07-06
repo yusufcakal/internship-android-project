@@ -65,7 +65,14 @@ public class StajAdapter extends BaseAdapter {
         tvFirmaAdi.setText(staj.getFirmaAdi());
         tvBaslangicTarih.setText(staj.getBaslangicTarihi().split(" ")[0] + " - ");
         tvBitisTarih.setText(staj.getBitisTarihi().split(" ")[0]);
-        tvSonuc.setText("Sonuç : " + staj.getSonuc());
+        if (staj.getSonuc() == 0){
+            tvSonuc.setText("Değerlendirilmedi");
+        }else if (staj.getSonuc() == 4){
+            tvSonuc.setText("Değerlendirildi");
+        }else if (staj.getSonuc() == 4){
+            tvSonuc.setText("Firma reddetti.");
+        }
+
         tvPuan.setText("Puan   : " + staj.getPuan());
 
         return view1;
