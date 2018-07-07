@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBar;
 import com.heinrichreimersoftware.materialdrawer.DrawerActivity;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
 import yusufcakal.com.stajtakip.fragments.firma.FirmalarFragment;
+import yusufcakal.com.stajtakip.fragments.profile.ProfileFragment;
 import yusufcakal.com.stajtakip.fragments.staj.StajlarFragment;
 import yusufcakal.com.stajtakip.pojo.Staj;
 import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
@@ -54,6 +55,21 @@ public class OgrenciDashboardActivity extends DrawerActivity implements Fragment
                             }
                         })
         );
+
+        addItem(
+                new DrawerItem()
+                        .setImage(getResources().getDrawable(R.drawable.ic_home_black_24dp))
+                        .setTextPrimary(getString(R.string.profile))
+                        .setOnItemClickListener(new DrawerItem.OnItemClickListener() {
+                            @Override
+                            public void onClick(DrawerItem drawerItem, long id, int position) {
+                                setTitle(getResources().getString(R.string.profile));
+                                openFragment(new ProfileFragment());
+                                OgrenciDashboardActivity.this.closeDrawer();
+                            }
+                        })
+        );
+
         addDivider();
         addItem(
                 new DrawerItem()

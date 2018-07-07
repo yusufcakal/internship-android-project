@@ -38,6 +38,7 @@
     <string name="tam_yapma">ZAMANINDA YAPMA</string>
     <string name="is_tutumu">İŞYERİNDEKİ TUTUMU</string>
     <string name="staj_degerlendir">STAJI KAYDET</string>
+    <string name="profile">Profil</string>
 
     <string-array name="staj_deger">
         <item>5</item>

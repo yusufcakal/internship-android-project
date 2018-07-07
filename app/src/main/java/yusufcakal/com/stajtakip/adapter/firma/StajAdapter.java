@@ -71,6 +71,8 @@ public class StajAdapter extends BaseAdapter {
             tvSonuc.setText("Değerlendirildi");
         }else if (staj.getSonuc() == 4){
             tvSonuc.setText("Firma reddetti.");
+        }else{
+            tvSonuc.setText(staj.getSonuc() + "");
         }
 
         tvPuan.setText("Puan   : " + staj.getPuan());
