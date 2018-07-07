@@ -9,7 +9,6 @@
         android:layout_height="match_parent"
         android:id="@+id/layout">
 
-
         <RelativeLayout
             android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
@@ -21,12 +20,10 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
-
             android:clickable="true"
             app:civ_border_width="3dp"
             app:civ_border_color="#FFFFFFFF"
-
-            android:id="@+id/profile"
+            android:id="@+id/imResim"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_below="@+id/header_cover_image"
@@ -46,7 +43,6 @@
             android:elevation="4dp"
             android:paddingBottom="24dp">
 
-
             <ImageView
                 android:id="@+id/imEdit"
                 android:layout_width="wrap_content"
@@ -59,7 +55,7 @@
                 android:src="@android:drawable/ic_menu_edit" />
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/tvIsim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -70,10 +66,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/location"
+                android:id="@+id/tvSifre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/designation"
+                android:layout_below="@+id/tvBolum"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:text="123456"
@@ -81,10 +77,10 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/designation"
+                android:id="@+id/tvBolum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/name"
+                android:layout_below="@+id/tvIsim"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:text="Bilgisayar Mühendisliği"

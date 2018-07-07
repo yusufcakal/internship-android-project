@@ -34,5 +34,36 @@ public class SessionUtil {
         return SharedPrefsUtils.getIntegerPreference(context, LinkUtil.BOLUM_ID, -1);
     }
 
+    public static void setIsim(Context context, String isim){
+        SharedPrefsUtils.setStringPreference(context, LinkUtil.ISIM, isim);
+    }
+
+    public static void setSifre(Context context, String sifre){
+        SharedPrefsUtils.setStringPreference(context, LinkUtil.SIFRE, sifre);
+    }
+
+    public static void setResim(Context context, String resim){
+        SharedPrefsUtils.setStringPreference(context, LinkUtil.RESIM, resim);
+    }
+
+    public static void setBolum(Context context, String bolum){
+        SharedPrefsUtils.setStringPreference(context, LinkUtil.BOLUM, bolum);
+    }
+
+    public static String getIsim(Context context){
+        return SharedPrefsUtils.getStringPreference(context, LinkUtil.ISIM);
+    }
+
+    public static String getSifre(Context context){
+        return SharedPrefsUtils.getStringPreference(context, LinkUtil.SIFRE);
+    }
+
+    public static String getResim(Context context){
+        return SharedPrefsUtils.getStringPreference(context, LinkUtil.RESIM);
+    }
+
+    public static String getBolum(Context context){
+        return SharedPrefsUtils.getStringPreference(context, LinkUtil.BOLUM);
+    }
 
 }

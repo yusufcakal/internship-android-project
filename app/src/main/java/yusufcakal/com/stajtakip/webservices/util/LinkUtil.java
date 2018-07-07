@@ -32,11 +32,21 @@ public class LinkUtil {
 
     public static String firmaStajDegerlendirUrl = baseUrl + "Firma/StajDegerlendir";
 
+    public static String ogrenciProfilDuzenle = baseUrl + "Hesap/Duzenle";
+
     public static String SESSION_KEY = "session";
 
     public static String USER_ID = "user_id";
 
     public static String BOLUM_ID = "bolum_id";
+
+    public static String ISIM = "isim";
+
+    public static String SIFRE = "sifre";
+
+    public static String RESIM = "resim";
+
+    public static String BOLUM = "bolum";
 
     public static String RUTBE = "rutbe";
 

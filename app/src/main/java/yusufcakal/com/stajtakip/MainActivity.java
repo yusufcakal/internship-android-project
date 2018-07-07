@@ -81,18 +81,28 @@ public class MainActivity extends AppCompatActivity
                 String token = info.getString("token");
                 int rutbe = info.getInt("rutbe");
                 int userId = info.getInt("id");
+                String isim = info.getString("ad_soyad");
+                String sifre = info.getString("sifre");
+                String resim = info.getString("resim");
 
+                SessionUtil.setIsim(getApplicationContext() , isim);
+                SessionUtil.setSifre(getApplicationContext() , sifre);
+                SessionUtil.setResim(getApplicationContext() , resim);
 
                 List<Bolum> bolumList = new ArrayList<>();
 
                 JSONArray bolumlerArray = info.getJSONArray("bolumler");
+
+                String bolum = bolumlerArray.getJSONObject(0).getString("bolum_adi");
+                SessionUtil.setBolum(getApplicationContext() , bolum);
+
                 for (int i=0; i<bolumlerArray.length(); i++){
                     JSONObject bolumObject = bolumlerArray.getJSONObject(i);
                     String bolumAdi = bolumObject.getString("bolum_adi");
                     String fakulteAdi = bolumObject.getString("fakulte_adi");
                     int bolum_id = bolumObject.getInt("bolum_id");
-                    Bolum bolum = new Bolum(bolum_id, bolumAdi, fakulteAdi);
-                    bolumList.add(bolum);
+                    Bolum bolum1 = new Bolum(bolum_id, bolumAdi, fakulteAdi);
+                    bolumList.add(bolum1);
                 }
 
                 SessionUtil.start(this, token);
