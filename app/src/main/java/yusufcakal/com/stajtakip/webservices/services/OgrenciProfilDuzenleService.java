@@ -1,7 +1,11 @@
 package yusufcakal.com.stajtakip.webservices.services;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -54,7 +58,7 @@ public class OgrenciProfilDuzenleService {
                 Map<String, String> params = new HashMap<>();
                 params.put("token", SessionUtil.getToken(context));
                 params.put("kullanici_id", String.valueOf(SessionUtil.getUserId(context)));
-                params.put("isim", isim);
+                params.put("ad_soyad", isim);
                 params.put("sifre", sifre);
                 return params;
 
@@ -64,7 +68,7 @@ public class OgrenciProfilDuzenleService {
             protected Map<String, DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
                 if (resim != null){
-                    params.put("resimler", new DataPart("image.jpg", AppHelper.getFileDataFromDrawable(context, resim), "image/jpeg"));
+                    params.put("resim", new DataPart("image.jpg", AppHelper.getFileDataFromDrawable(context, resim), "image/jpeg"));
                 }
                 return params;
             }
@@ -73,7 +77,6 @@ public class OgrenciProfilDuzenleService {
         requestQueue.add(multipartRequest);
 
     }
-
 
 
 }

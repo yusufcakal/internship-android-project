@@ -1,8 +1,10 @@
 package yusufcakal.com.stajtakip.fragments.profile;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
-
 import yusufcakal.com.stajtakip.R;
+import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 
 /**
@@ -24,6 +26,19 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
     private View view;
     private ImageView imResim, imEdit;
     private TextView tvIsim, tvBolum, tvSifre;
+    private FragmentListener fragmentListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        fragmentListener = (FragmentListener) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        fragmentListener = null;
+    }
 
     @Nullable
     @Override
@@ -36,6 +51,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         imResim = view.findViewById(R.id.imResim);
         imEdit = view.findViewById(R.id.imEdit);
         imEdit.setOnClickListener(this);
+
+        Toast.makeText(getContext(), SessionUtil.getResim(getContext()), Toast.LENGTH_SHORT).show();
+        Log.e("RESİM", SessionUtil.getResim(getContext()));
 
         try {
             tvIsim.setText(SessionUtil.getIsim(getContext()));
@@ -51,7 +69,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(getContext(), "Düzenle", Toast.LENGTH_SHORT).show();
+        fragmentListener.onStart(new ProfileDuzenleFragment());
     }
     
 }

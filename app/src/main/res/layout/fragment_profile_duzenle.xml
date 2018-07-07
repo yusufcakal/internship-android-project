@@ -23,7 +23,7 @@
             android:clickable="true"
             app:civ_border_width="3dp"
             app:civ_border_color="#FFFFFFFF"
-            android:id="@+id/imResim"
+            android:id="@+id/imResimEdit"
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:layout_below="@+id/header_cover_image"
@@ -43,44 +43,36 @@
             android:elevation="4dp"
             android:paddingBottom="24dp">
 
-            <ImageView
-                android:id="@+id/imEdit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginTop="16dp"
-                android:clickable="true"
-                android:src="@android:drawable/ic_menu_edit" />
-
-            <TextView
-                android:id="@+id/tvIsim"
+            <EditText
+                android:id="@+id/etIsimEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="70dp"
                 android:text="Yusuf ÇAKAL"
-                android:textColor="#fff"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:background="@drawable/edittext_back"
+                android:textColor="@color/colorPrimaryDark"
+                android:padding="4dp"
+                android:textSize="24sp" />
 
-            <TextView
-                android:id="@+id/tvSifre"
+            <EditText
+                android:id="@+id/etSifreEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvBolum"
+                android:layout_below="@+id/tvBolumEdit"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/edittext_back"
                 android:text="123456"
-                android:textColor="#fff"
+                android:textColor="@color/colorPrimaryDark"
+                android:padding="4dp"
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tvBolum"
+                android:id="@+id/tvBolumEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvIsim"
+                android:layout_below="@+id/etIsimEdit"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:text="Bilgisayar Mühendisliği"
@@ -88,7 +80,16 @@
                 android:textSize="18sp" />
         </RelativeLayout>
 
+        <Button
+            android:id="@+id/btnChangeSave"
+            android:text="@string/changeSave"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/profile_layout"
+            android:textColor="@color/colorWhite"
+            android:backgroundTint="@color/colorPrimary"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </RelativeLayout>
 </ScrollView>
-

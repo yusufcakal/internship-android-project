@@ -66,13 +66,21 @@ public class StajAdapter extends BaseAdapter {
         tvBaslangicTarih.setText(staj.getBaslangicTarihi().split(" ")[0] + " - ");
         tvBitisTarih.setText(staj.getBitisTarihi().split(" ")[0]);
         if (staj.getSonuc() == 0){
-            tvSonuc.setText("Değerlendirilmedi");
+            tvSonuc.setText("Firma Onayı Bekliyor");
         }else if (staj.getSonuc() == 4){
-            tvSonuc.setText("Değerlendirildi");
-        }else if (staj.getSonuc() == 4){
-            tvSonuc.setText("Firma reddetti.");
-        }else{
-            tvSonuc.setText(staj.getSonuc() + "");
+            tvSonuc.setText("Okul Sonuç Bekliyor");
+        }else if (staj.getSonuc() == 1){
+            tvSonuc.setText("Okul Onayı Bekliyor");
+        }else if (staj.getSonuc() == -1){
+            tvSonuc.setText("Firma Reddetti");
+        }else if (staj.getSonuc() == -2){
+            tvSonuc.setText("Okul Reddetti");
+        }else if (staj.getSonuc() == 2){
+            tvSonuc.setText("Detay Girilebilir");
+        }else if (staj.getSonuc() == 3){
+            tvSonuc.setText("Firma Sonuç Bekliyor");
+        }else if (staj.getSonuc() == 5){
+            tvSonuc.setText("Staj Tamamlandı");
         }
 
         tvPuan.setText("Puan   : " + staj.getPuan());
