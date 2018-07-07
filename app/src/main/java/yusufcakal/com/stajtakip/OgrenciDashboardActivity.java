@@ -2,7 +2,6 @@ package yusufcakal.com.stajtakip;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -15,14 +14,14 @@ import yusufcakal.com.stajtakip.pojo.Staj;
 import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
 
-public class DashboardActivity extends DrawerActivity implements FragmentListener{
+public class OgrenciDashboardActivity extends DrawerActivity implements FragmentListener{
 
     private ActionBar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_dashboard_ogrenci);
 
         toolbar = getSupportActionBar();
         setTitle(getResources().getString(R.string.firmalar));
@@ -37,7 +36,7 @@ public class DashboardActivity extends DrawerActivity implements FragmentListene
                             public void onClick(DrawerItem drawerItem, long id, int position) {
                                 setTitle(getResources().getString(R.string.firmalar));
                                 openFragment(new FirmalarFragment());
-                                DashboardActivity.this.closeDrawer();
+                                OgrenciDashboardActivity.this.closeDrawer();
                             }
                         })
         );
@@ -51,7 +50,7 @@ public class DashboardActivity extends DrawerActivity implements FragmentListene
                             public void onClick(DrawerItem drawerItem, long id, int position) {
                                 setTitle(getResources().getString(R.string.stajlar));
                                 openFragment(new StajlarFragment());
-                                DashboardActivity.this.closeDrawer();
+                                OgrenciDashboardActivity.this.closeDrawer();
                             }
                         })
         );
@@ -63,8 +62,8 @@ public class DashboardActivity extends DrawerActivity implements FragmentListene
                         .setOnItemClickListener(new DrawerItem.OnItemClickListener() {
                             @Override
                             public void onClick(DrawerItem drawerItem, long id, int position) {
-                                SessionUtil.stop(DashboardActivity.this);
-                                startActivity(new Intent(DashboardActivity.this, MainActivity.class));
+                                SessionUtil.stop(OgrenciDashboardActivity.this);
+                                startActivity(new Intent(OgrenciDashboardActivity.this, MainActivity.class));
                             }
                         })
         );

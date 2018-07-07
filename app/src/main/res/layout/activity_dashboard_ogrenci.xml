@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="yusufcakal.com.stajtakip.DashboardActivity">
+    tools:context="yusufcakal.com.stajtakip.OgrenciDashboardActivity">
 
     <RelativeLayout
         android:id="@+id/container"

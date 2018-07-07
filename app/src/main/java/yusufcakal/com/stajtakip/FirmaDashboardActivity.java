@@ -7,20 +7,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.util.Log;
-import android.widget.Button;
 
 import com.heinrichreimersoftware.materialdrawer.DrawerActivity;
 import com.heinrichreimersoftware.materialdrawer.structure.DrawerItem;
 
 import yusufcakal.com.stajtakip.fragments.firma.FirmaStajlarFragment;
-import yusufcakal.com.stajtakip.fragments.firma.FirmalarFragment;
 import yusufcakal.com.stajtakip.fragments.personel.PersonelFragment;
-import yusufcakal.com.stajtakip.fragments.staj.StajlarFragment;
 import yusufcakal.com.stajtakip.pojo.Staj;
 import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
-import yusufcakal.com.stajtakip.webservices.util.LinkUtil;
 import yusufcakal.com.stajtakip.webservices.util.SessionUtil;
-import yusufcakal.com.stajtakip.webservices.util.SharedPrefsUtils;
 
 public class FirmaDashboardActivity extends DrawerActivity implements FragmentListener{
 
@@ -29,7 +24,7 @@ public class FirmaDashboardActivity extends DrawerActivity implements FragmentLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_dashboard_ogrenci);
 
         Log.e("TOKEN", SessionUtil.getToken(this));
         Log.e("KULLANICI İD", String.valueOf(SessionUtil.getUserId(this)));

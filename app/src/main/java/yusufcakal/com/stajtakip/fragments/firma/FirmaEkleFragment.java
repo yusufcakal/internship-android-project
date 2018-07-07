@@ -15,7 +15,7 @@ import com.android.volley.VolleyError;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import yusufcakal.com.stajtakip.DashboardActivity;
+import yusufcakal.com.stajtakip.OgrenciDashboardActivity;
 import yusufcakal.com.stajtakip.R;
 import yusufcakal.com.stajtakip.pojo.Firma;
 import yusufcakal.com.stajtakip.webservices.interfaces.FirmaEkleListener;
@@ -66,7 +66,7 @@ public class FirmaEkleFragment extends android.support.v4.app.Fragment
             JSONObject jsonObject = new JSONObject(result);
             boolean resultFlag = jsonObject.getBoolean("result");
             if (resultFlag){
-                startActivity(new Intent(getActivity(), DashboardActivity.class));
+                startActivity(new Intent(getActivity(), OgrenciDashboardActivity.class));
                 getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             }else{
                 String errorMessage = jsonObject.getString("error");

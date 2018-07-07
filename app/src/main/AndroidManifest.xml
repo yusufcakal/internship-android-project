@@ -17,7 +17,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DashboardActivity" />
+        <activity android:name=".OgrenciDashboardActivity" />
         <activity android:name=".FirmaDashboardActivity" />
     </application>
 

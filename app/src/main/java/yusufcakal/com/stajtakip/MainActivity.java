@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity
 
         if (SessionUtil.check(this)){
             if (rutbe == 1){
-                startActivity(new Intent(this, DashboardActivity.class));
+                startActivity(new Intent(this, OgrenciDashboardActivity.class));
             }else if (rutbe == 2){
                 startActivity(new Intent(this, FirmaDashboardActivity.class));
             }
@@ -100,12 +100,17 @@ public class MainActivity extends AppCompatActivity
                 if (rutbe == 1){
                     SharedPrefsUtils.setIntegerPreference(this, LinkUtil.USER_ID, userId);
                     SharedPrefsUtils.setIntegerPreference(getApplicationContext(), LinkUtil.BOLUM_ID, bolumList.get(0).getId());
-                    startActivity(new Intent(this, DashboardActivity.class));
+                    startActivity(new Intent(this, OgrenciDashboardActivity.class));
                 }else if (rutbe == 2){
                     JSONArray firmalarArray = info.getJSONArray("firmalar");
                     JSONObject object = firmalarArray.getJSONObject(0);
                     SharedPrefsUtils.setIntegerPreference(this, LinkUtil.USER_ID, object.getInt("firma_id"));
                     startActivity(new Intent(this, FirmaDashboardActivity.class));
+                }else if (rutbe == 3){
+                    /**
+                     * TODO : Personel stajı
+                     */
+                    Toast.makeText(this, "Personel Girişi", Toast.LENGTH_SHORT).show();
                 }
                 SharedPrefsUtils.setIntegerPreference(getApplicationContext(), LinkUtil.RUTBE, rutbe);
             }else{
