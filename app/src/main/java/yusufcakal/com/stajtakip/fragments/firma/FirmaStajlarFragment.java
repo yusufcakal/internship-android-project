@@ -113,6 +113,9 @@ public class FirmaStajlarFragment extends Fragment
         stajListAnlik = stajListOnayBekleyenler;
         stajAdapter.notifyDataSetChanged();
         lvStajlar.setAdapter(stajAdapter);
+        if (stajListAnlik.size() == 0){
+            Toast.makeText(getContext(), "Liste Boş !", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void onaylananlar(){
@@ -126,6 +129,9 @@ public class FirmaStajlarFragment extends Fragment
         stajListAnlik = stajList1;
         stajAdapter.notifyDataSetChanged();
         lvStajlar.setAdapter(stajAdapter);
+        if (stajListAnlik.size() == 0){
+            Toast.makeText(getContext(), "Liste Boş !", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -154,6 +160,7 @@ public class FirmaStajlarFragment extends Fragment
             lvStajlar.setAdapter(stajAdapter);
 
             onayBekleyenler();
+
 
         } catch (JSONException e) {
             e.printStackTrace();
