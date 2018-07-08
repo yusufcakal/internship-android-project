@@ -46,5 +46,6 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.eightbitlab:bottomnavigationbar:0.9.5'
+    compile 'com.github.javiersantos:BottomDialogs:1.2.1'
 
 }

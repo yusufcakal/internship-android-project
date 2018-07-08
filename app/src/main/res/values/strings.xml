@@ -42,6 +42,8 @@
     <string name="changeSave">Değişiklikleri Kaydet</string>
     <string name="staj_onay_bekleyen">Onay Bekleyenler</string>
     <string name="staj_onaylananlar">Onaylananlar</string>
+    <string name="staj_degerlendirilenler">Değerlendirilenler</string>
+    <string name="staj_degerlendirme_bekleyen">Değerlendirme Bekleyenler</string>
 
     <string-array name="staj_deger">
         <item>5</item>

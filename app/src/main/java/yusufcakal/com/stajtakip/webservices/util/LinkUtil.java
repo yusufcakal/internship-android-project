@@ -34,6 +34,8 @@ public class LinkUtil {
 
     public static String ogrenciProfilDuzenle = baseUrl + "Hesap/Duzenle";
 
+    public static String firmaStajSonucUrl = baseUrl + "Staj/SonucDegistir";
+
     public static String SESSION_KEY = "session";
 
     public static String USER_ID = "user_id";

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.eightbitlab.bottomnavigationbar.BottomBarItem;
 import com.eightbitlab.bottomnavigationbar.BottomNavigationBar;
+import com.github.javiersantos.bottomdialogs.BottomDialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,8 +30,10 @@ import yusufcakal.com.stajtakip.adapter.firma.StajAdapter;
 import yusufcakal.com.stajtakip.fragments.staj.stajgun.FirmaStajGunlerFragment;
 import yusufcakal.com.stajtakip.fragments.staj.stajgun.StajGunlerFragment;
 import yusufcakal.com.stajtakip.pojo.Staj;
+import yusufcakal.com.stajtakip.webservices.interfaces.FirmaStajSonucListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.FirmaStajlarListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
+import yusufcakal.com.stajtakip.webservices.services.FirmaStajSonucService;
 import yusufcakal.com.stajtakip.webservices.services.FirmaStajlarService;
 
 /**
@@ -39,8 +42,10 @@ import yusufcakal.com.stajtakip.webservices.services.FirmaStajlarService;
 
 public class FirmaStajlarFragment extends Fragment
         implements FirmaStajlarListener,
-        AdapterView.OnItemClickListener{
+        AdapterView.OnItemClickListener,
+        FirmaStajSonucListener{
 
+    private int itemSelect;
     private StajAdapter stajAdapter;
     private BottomNavigationBar bottomNavigationBar;
     private View view;
@@ -86,7 +91,6 @@ public class FirmaStajlarFragment extends Fragment
         bottomNavigationBar.setOnSelectListener(new BottomNavigationBar.OnSelectListener() {
             @Override
             public void onSelect(int position) {
-
                 if (position == 0){
                     onayBekleyenler();
                 }else{
@@ -151,7 +155,6 @@ public class FirmaStajlarFragment extends Fragment
 
             onayBekleyenler();
 
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -162,12 +165,64 @@ public class FirmaStajlarFragment extends Fragment
         Toast.makeText(getContext(), String.valueOf(error), Toast.LENGTH_SHORT).show();
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        itemSelect = i;
         if (stajListAnlik.get(i).getSonuc() == 4){
-            Toast.makeText(getContext(), "Bu staj zaten değerlendirildi.", Toast.LENGTH_SHORT).show();
-        }else{
+        }else if (stajListAnlik.get(i).getSonuc() == 0){
+            new BottomDialog.Builder(getContext())
+                    .setTitle("Staj Onay Bekliyor.")
+                    .setContent("Firma bu stajı henüz onaylamadı onaylamak istiyor musunuz.")
+                    .setPositiveText("Onayla")
+                    .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                    .setPositiveTextColorResource(android.R.color.white)
+                    .onPositive(new BottomDialog.ButtonCallback() {
+                        @Override
+                        public void onClick(BottomDialog dialog) {
+                            /**
+                             * Stajı Onayla
+                             */
+                            stajList.clear();
+                            FirmaStajSonucService firmaStajSonucService = new FirmaStajSonucService(getContext(), FirmaStajlarFragment.this);
+                            firmaStajSonucService.setSonuc(stajListAnlik.get(itemSelect).getId(), 1); // Okul onay bekliyor yapıyoruz.
+                        }
+                    })
+                    .setNegativeText("Reddet")
+                    .setNegativeTextColor(getResources().getColor(R.color.colorRed))
+                    .onNegative(new BottomDialog.ButtonCallback() {
+                        @Override
+                        public void onClick(BottomDialog dialog) {
+                            /**
+                             * Stajı Reddet
+                             */
+                            stajList.clear();
+                            FirmaStajSonucService firmaStajSonucService = new FirmaStajSonucService(getContext(), FirmaStajlarFragment.this);
+                            firmaStajSonucService.setSonuc(stajListAnlik.get(itemSelect).getId(), -1); // Stajı Reddet.
+                        }
+                    })
+                    .show();
+        }else if (stajListAnlik.get(i).getSonuc() == 3){
             fragmentListener.onStart(new FirmaStajGunlerFragment(), stajListAnlik.get(i));
         }
+    }
+
+    @Override
+    public void onSuccessSonuc(String result) {
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+            boolean resultFlag = jsonObject.getBoolean("result");
+            if (resultFlag){
+                FirmaStajlarService firmaStajlarService = new FirmaStajlarService(getContext(), this);
+                firmaStajlarService.getStajlar();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onErrorSonuc(VolleyError error) {
+
     }
 }
