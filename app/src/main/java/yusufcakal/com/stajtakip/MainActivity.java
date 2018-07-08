@@ -119,9 +119,6 @@ public class MainActivity extends AppCompatActivity
                     SharedPrefsUtils.setIntegerPreference(this, LinkUtil.USER_ID, object.getInt("firma_id"));
                     startActivity(new Intent(this, FirmaDashboardActivity.class));
                 }else if (rutbe == 3){
-                    /**
-                     * TODO : Personel stajı
-                     */
                     JSONArray firmalarArray = info.getJSONArray("firmalar");
                     JSONObject object = firmalarArray.getJSONObject(0);
                     SharedPrefsUtils.setIntegerPreference(this, LinkUtil.USER_ID, object.getInt("firma_id"));

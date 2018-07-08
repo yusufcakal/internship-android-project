@@ -4,7 +4,6 @@ import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,22 +20,16 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.VolleyError;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import yusufcakal.com.stajtakip.R;
 import yusufcakal.com.stajtakip.adapter.firma.FirmaStajGunlerAdapter;
-import yusufcakal.com.stajtakip.adapter.firma.StajGunlerAdapter;
+import yusufcakal.com.stajtakip.fragments.firma.FirmaStajlarFragment;
 import yusufcakal.com.stajtakip.pojo.Staj;
 import yusufcakal.com.stajtakip.pojo.StajGun;
 import yusufcakal.com.stajtakip.pojo.StajGunResim;
@@ -74,6 +67,7 @@ public class FirmaStajGunlerFragment extends Fragment implements
     private Button btnStajDegerlendirGonder;
     private Spinner spinnerStajDevam, spinnerStajCalisma, spinnerIsZamaninda, spinnerIsTutumu;
     private int stajPuan = 0;
+    private int itemSelect;
 
     @Nullable
     @Override
@@ -216,14 +210,9 @@ public class FirmaStajGunlerFragment extends Fragment implements
         if (stajGunList.get(i).isSelected()){
             stajGunOnayIdList.add(stajGunList.get(i).getStajGunId());
         }else{
-            //stajGunOnayIdList.remove();
             stajGunOnayIdList.remove(stajGunOnayIdList.indexOf(stajGunList.get(i).getStajGunId()));
         }
 
-        /**
-         * TODO : Staj gün id leri listeye aktardım.
-         */
-        Toast.makeText(getContext(), String.valueOf(stajGunOnayIdList), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -257,12 +246,14 @@ public class FirmaStajGunlerFragment extends Fragment implements
 
     @Override
     public void onSuccessDegerlendir(String result) {
-        Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+        dialog.dismiss();
+        fragmentListener.onStart(new FirmaStajlarFragment());
     }
 
     @Override
     public void onErrorDegerlendir(VolleyError error) {
         Toast.makeText(getContext(), String.valueOf(error), Toast.LENGTH_SHORT).show();
+        dialog.dismiss();
     }
 
 }

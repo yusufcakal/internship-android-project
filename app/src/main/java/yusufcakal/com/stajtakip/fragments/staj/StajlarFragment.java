@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.android.volley.VolleyError;
+import com.github.javiersantos.bottomdialogs.BottomDialog;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,23 +22,27 @@ import java.util.ArrayList;
 import java.util.List;
 import yusufcakal.com.stajtakip.R;
 import yusufcakal.com.stajtakip.adapter.firma.StajAdapter;
+import yusufcakal.com.stajtakip.fragments.firma.FirmaStajlarFragment;
 import yusufcakal.com.stajtakip.fragments.staj.stajgun.StajGunlerFragment;
 import yusufcakal.com.stajtakip.pojo.Staj;
+import yusufcakal.com.stajtakip.webservices.interfaces.FirmaStajSonucListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.FragmentListener;
 import yusufcakal.com.stajtakip.webservices.interfaces.StajListeleListener;
+import yusufcakal.com.stajtakip.webservices.services.FirmaStajSonucService;
 import yusufcakal.com.stajtakip.webservices.services.StajlarService;
 
 /**
  * Created by Yusuf on 21.05.2018.
  */
 
-public class StajlarFragment extends Fragment implements StajListeleListener, AdapterView.OnItemClickListener{
+public class StajlarFragment extends Fragment implements StajListeleListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener, FirmaStajSonucListener{
 
     private View view;
     private List<Staj> stajList;
     private ListView lvStajlar;
     private Button btnStajEkle;
     private FragmentListener fragmentListener;
+    private int itemSelect;
 
     @Nullable
     @Override
@@ -46,6 +52,7 @@ public class StajlarFragment extends Fragment implements StajListeleListener, Ad
         lvStajlar = view.findViewById(R.id.lvStajlar);
         btnStajEkle = view.findViewById(R.id.btnStajEkle);
         lvStajlar.setOnItemClickListener(this);
+        lvStajlar.setOnItemLongClickListener(this);
         btnStajEkle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,11 +105,10 @@ public class StajlarFragment extends Fragment implements StajListeleListener, Ad
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        /**
-         * TODO : Staj a rapor girilebilir ise detaya gitsin. (Eklenecek)
-         */
-        fragmentListener.onStart(new StajGunlerFragment(), stajList.get(i));
-        Log.e("Staj ID", String.valueOf(stajList.get(i).getId()));
+        if (stajList.get(i).getSonuc() == 2){
+            fragmentListener.onStart(new StajGunlerFragment(), stajList.get(i));
+            Log.e("Staj ID", String.valueOf(stajList.get(i).getId()));
+        }
     }
 
     @Override
@@ -117,4 +123,48 @@ public class StajlarFragment extends Fragment implements StajListeleListener, Ad
         fragmentListener = null;
     }
 
+    @Override
+    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+        itemSelect = i;
+        if (stajList.get(itemSelect).getSonuc() == 2){
+            new BottomDialog.Builder(getContext())
+                    .setTitle("Staj Onay Bekliyor.")
+                    .setContent("Öğrenci bu stajı henüz tamamlamadı tamamlamak istiyor musunuz.")
+                    .setPositiveText("Tamamla")
+                    .setPositiveBackgroundColorResource(R.color.colorPrimary)
+                    .setPositiveTextColorResource(android.R.color.white)
+                    .onPositive(new BottomDialog.ButtonCallback() {
+                        @Override
+                        public void onClick(BottomDialog dialog) {
+                            /**
+                             * Stajı Tamamla
+                             */
+                            stajList.clear();
+                            FirmaStajSonucService firmaStajSonucService = new FirmaStajSonucService(getContext(), StajlarFragment.this);
+                            firmaStajSonucService.setSonuc(stajList.get(itemSelect).getId(), 3); // Okul onay bekliyor yapıyoruz.
+                        }
+                    })
+                    .show();
+        }
+
+        return true;
+    }
+
+    @Override
+    public void onSuccessSonuc(String result) {
+        try {
+            JSONObject jsonObject = new JSONObject(result);
+            boolean resultFlag = jsonObject.getBoolean("result");
+            if (resultFlag){
+                fragmentListener.onStart(new StajlarFragment());
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onErrorSonuc(VolleyError error) {
+
+    }
 }

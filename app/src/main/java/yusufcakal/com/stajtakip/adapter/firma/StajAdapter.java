@@ -83,7 +83,11 @@ public class StajAdapter extends BaseAdapter {
             tvSonuc.setText("Staj Tamamlandı");
         }
 
-        tvPuan.setText("Puan   : " + staj.getPuan());
+        if (staj.getPuan() != 0){
+            tvPuan.setText("İş Devam Durumu: " + String.valueOf(staj.getPuan()).charAt(0) + "\n" + "Çalışma Gayreti: " + String.valueOf(staj.getPuan()).charAt(1) + "\n" + "Zamanında Yapma: " + String.valueOf(staj.getPuan()).charAt(2) + "\n" + "İşyerinde Tutumu: " + String.valueOf(staj.getPuan()).charAt(3) + "\n");
+        }else{
+            tvPuan.setText("Puan   : " + staj.getPuan());
+        }
 
         return view1;
 
