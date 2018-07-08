@@ -139,7 +139,6 @@ public class StajlarFragment extends Fragment implements StajListeleListener, Ad
                             /**
                              * Stajı Tamamla
                              */
-                            stajList.clear();
                             FirmaStajSonucService firmaStajSonucService = new FirmaStajSonucService(getContext(), StajlarFragment.this);
                             firmaStajSonucService.setSonuc(stajList.get(itemSelect).getId(), 3); // Okul onay bekliyor yapıyoruz.
                         }

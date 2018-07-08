@@ -1,8 +1,6 @@
 package yusufcakal.com.stajtakip.fragments.staj;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,26 +9,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
-
 import com.android.volley.VolleyError;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-
 import yusufcakal.com.stajtakip.R;
 import yusufcakal.com.stajtakip.adapter.firma.CustomSpinnerAdapter;
 import yusufcakal.com.stajtakip.pojo.Firma;
@@ -55,7 +46,6 @@ public class StajEkleFragment extends android.support.v4.app.Fragment implements
     private View view;
     private Spinner spinner;
     private Button btnBaslangicTarih, btnBitisTarih, btnStajEkle;
-    private final Calendar myCalendar = Calendar.getInstance();
     private int firmaId;
     private String strStajBaslangicTarih, strStajBitisTarih;
     private FragmentListener fragmentListener;
@@ -140,50 +130,50 @@ public class StajEkleFragment extends android.support.v4.app.Fragment implements
         Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
     }
 
+    private void datePickerBaslangic(){
+        Calendar calendar = Calendar.getInstance();
+        final  SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                btnBaslangicTarih.setText(dateFormatter.format(newDate.getTime()));
+                strStajBaslangicTarih = dateFormatter.format(newDate.getTime());
+            }
+
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.show();
+    }
+
+    private void datePickerBitis(){
+        Calendar calendar = Calendar.getInstance();
+        final  SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
+
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                btnBitisTarih.setText(dateFormatter.format(newDate.getTime()));
+                strStajBitisTarih = dateFormatter.format(newDate.getTime());
+            }
+
+        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.show();
+    }
+
     @Override
     public void onClick(View view) {
         if (view == btnBaslangicTarih){
-            DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.AppTheme_DialogTheme,  date, myCalendar
-                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                    myCalendar.get(Calendar.DAY_OF_MONTH));
-            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
-            datePickerDialog.show();
-            updateBaslangicLabel();
+            datePickerBaslangic();
+            //updateBaslangicLabel();
         }else if (view == btnBitisTarih){
-            new DatePickerDialog(getContext(), R.style.AppTheme_DialogTheme,  date, myCalendar
-                    .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            updateBitisLabel();
+            datePickerBitis();
+            //updateBitisLabel();
         }else if (view == btnStajEkle){
             stajEkle();
             Log.e("TARİHLER", "BAŞLANGIÇ : " + staj.getBaslangicTarihi() + " BİTİŞ : " + staj.getBitisTarihi());
         }
-    }
-
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear,
-                              int dayOfMonth) {
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, monthOfYear);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        }
-
-    };
-
-    private void updateBaslangicLabel() {
-        String myFormat = "yyyy-MM-dd";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        btnBaslangicTarih.setText(sdf.format(myCalendar.getTime()));
-        strStajBaslangicTarih = sdf.format(myCalendar.getTime());
-    }
-
-    private void updateBitisLabel() {
-        String myFormat = "yyyy-MM-dd";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        btnBitisTarih.setText(sdf.format(myCalendar.getTime()));
-        strStajBitisTarih = sdf.format(myCalendar.getTime());
     }
 
     private void stajEkle(){
