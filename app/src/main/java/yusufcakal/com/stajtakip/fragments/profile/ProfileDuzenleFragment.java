@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +76,8 @@ public class ProfileDuzenleFragment extends Fragment implements View.OnClickList
         tvBolumEdit = view.findViewById(R.id.tvBolumEdit);
         btnChangeSave.setOnClickListener(this);
         imResimEdit.setOnClickListener(this);
+
+        Picasso.get().load(SessionUtil.getResim(getContext())).into(imResimEdit);
 
         etIsimEdit = view.findViewById(R.id.etIsimEdit);
         etSifreEdit = view.findViewById(R.id.etSifreEdit);
@@ -142,7 +145,7 @@ public class ProfileDuzenleFragment extends Fragment implements View.OnClickList
     @Override
     public void onSuccess(String result) {
 
-        Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+        Log.e("RESIM", result);
 
         try {
             JSONObject jsonObject = new JSONObject(result);
@@ -150,8 +153,12 @@ public class ProfileDuzenleFragment extends Fragment implements View.OnClickList
             if (resultFlag){
                 SessionUtil.setIsim(getContext(), isim);
                 SessionUtil.setSifre(getContext(), sifre);
-                String nameImage = "http://bitirme.emre.pw/Public/Uploads/Kullanicilar/" + imageName;
-                SessionUtil.setResim(getContext(),nameImage);
+
+                String newImage = jsonObject.getString("resim");
+                if (!newImage.equals("")){
+                    SessionUtil.setResim(getContext(),newImage);
+                }
+
                 fragmentListener.onStart(new ProfileFragment());
             }
         } catch (JSONException e) {

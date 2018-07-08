@@ -52,7 +52,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         imEdit = view.findViewById(R.id.imEdit);
         imEdit.setOnClickListener(this);
 
-        Toast.makeText(getContext(), SessionUtil.getResim(getContext()), Toast.LENGTH_SHORT).show();
         Log.e("RESİM", SessionUtil.getResim(getContext()));
 
         try {
