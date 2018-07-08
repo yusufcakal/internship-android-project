@@ -1,5 +1,6 @@
 package yusufcakal.com.stajtakip.fragments.firma;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +14,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.eightbitlab.bottomnavigationbar.BottomBarItem;
+import com.eightbitlab.bottomnavigationbar.BottomNavigationBar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,11 +41,14 @@ public class FirmaStajlarFragment extends Fragment
         implements FirmaStajlarListener,
         AdapterView.OnItemClickListener{
 
+    private StajAdapter stajAdapter;
+    private BottomNavigationBar bottomNavigationBar;
     private View view;
     private ListView lvStajlar;
     private Staj staj;
-    private List<Staj> stajList;
+    private List<Staj> stajList, stajListAnlik;
     private FragmentListener fragmentListener;
+    @SuppressLint("ResourceType")
 
     @Override
     public void onAttach(Context context) {
@@ -61,14 +67,61 @@ public class FirmaStajlarFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_firmastajlarlar, container, false);
 
+        bottomNavigationBar = view.findViewById(R.id.bottom_bar);
+
         stajList = new ArrayList<>();
+        stajListAnlik = new ArrayList<>();
         lvStajlar = view.findViewById(R.id.lvStajlar);
         lvStajlar.setOnItemClickListener(this);
 
         FirmaStajlarService firmaStajlarService = new FirmaStajlarService(getContext(), this);
         firmaStajlarService.getStajlar();
 
+        @SuppressLint("ResourceType") BottomBarItem item1 = new BottomBarItem(getResources().getDrawable(R.drawable.ic_home_black_24dp), R.string.staj_onay_bekleyen);
+        @SuppressLint("ResourceType") BottomBarItem item2 = new BottomBarItem(getResources().getDrawable(R.drawable.ic_home_black_24dp), R.string.staj_onaylananlar);
+
+        bottomNavigationBar.addTab(item1);
+        bottomNavigationBar.addTab(item2);
+
+        bottomNavigationBar.setOnSelectListener(new BottomNavigationBar.OnSelectListener() {
+            @Override
+            public void onSelect(int position) {
+
+                if (position == 0){
+                    onayBekleyenler();
+                }else{
+                    onaylananlar();
+                }
+            }
+        });
+
         return view;
+    }
+
+    private void onayBekleyenler(){
+        List<Staj> stajListOnayBekleyenler = new ArrayList<>();
+        for (int i=0; i<stajList.size(); i++){
+            if (stajList.get(i).getSonuc() == 0){
+                stajListOnayBekleyenler.add(stajList.get(i));
+            }
+        }
+        stajAdapter = new StajAdapter(getContext(), stajListOnayBekleyenler);
+        stajListAnlik = stajListOnayBekleyenler;
+        stajAdapter.notifyDataSetChanged();
+        lvStajlar.setAdapter(stajAdapter);
+    }
+
+    private void onaylananlar(){
+        List<Staj> stajList1 = new ArrayList<>();
+        for (int i=0; i<stajList.size(); i++){
+            if (stajList.get(i).getSonuc() != 0){
+                stajList1.add(stajList.get(i));
+            }
+        }
+        stajAdapter = new StajAdapter(getContext(), stajList1);
+        stajListAnlik = stajList1;
+        stajAdapter.notifyDataSetChanged();
+        lvStajlar.setAdapter(stajAdapter);
     }
 
     @Override
@@ -93,8 +146,11 @@ public class FirmaStajlarFragment extends Fragment
                 }
             }
 
-            StajAdapter stajAdapter = new StajAdapter(getContext(), stajList);
+            stajAdapter = new StajAdapter(getContext(), stajList);
             lvStajlar.setAdapter(stajAdapter);
+
+            onayBekleyenler();
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -108,10 +164,10 @@ public class FirmaStajlarFragment extends Fragment
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if (stajList.get(i).getSonuc() == 4){
+        if (stajListAnlik.get(i).getSonuc() == 4){
             Toast.makeText(getContext(), "Bu staj zaten değerlendirildi.", Toast.LENGTH_SHORT).show();
         }else{
-            fragmentListener.onStart(new FirmaStajGunlerFragment(), stajList.get(i));
+            fragmentListener.onStart(new FirmaStajGunlerFragment(), stajListAnlik.get(i));
         }
     }
 }

@@ -81,20 +81,10 @@ public class MainActivity extends AppCompatActivity
                 String token = info.getString("token");
                 int rutbe = info.getInt("rutbe");
                 int userId = info.getInt("id");
-                String isim = info.getString("ad_soyad");
-                String sifre = info.getString("sifre");
-                String resim = info.getString("resim");
-
-                SessionUtil.setIsim(getApplicationContext() , isim);
-                SessionUtil.setSifre(getApplicationContext() , sifre);
-                SessionUtil.setResim(getApplicationContext() , resim);
 
                 List<Bolum> bolumList = new ArrayList<>();
 
                 JSONArray bolumlerArray = info.getJSONArray("bolumler");
-
-                String bolum = bolumlerArray.getJSONObject(0).getString("bolum_adi");
-                SessionUtil.setBolum(getApplicationContext() , bolum);
 
                 for (int i=0; i<bolumlerArray.length(); i++){
                     JSONObject bolumObject = bolumlerArray.getJSONObject(i);
@@ -108,6 +98,18 @@ public class MainActivity extends AppCompatActivity
                 SessionUtil.start(this, token);
 
                 if (rutbe == 1){
+
+                    String bolum = bolumlerArray.getJSONObject(0).getString("bolum_adi");
+                    SessionUtil.setBolum(getApplicationContext() , bolum);
+
+                    String isim = info.getString("ad_soyad");
+                    String sifre = info.getString("sifre");
+                    String resim = info.getString("resim");
+
+                    SessionUtil.setIsim(getApplicationContext() , isim);
+                    SessionUtil.setSifre(getApplicationContext() , sifre);
+                    SessionUtil.setResim(getApplicationContext() , resim);
+
                     SharedPrefsUtils.setIntegerPreference(this, LinkUtil.USER_ID, userId);
                     SharedPrefsUtils.setIntegerPreference(getApplicationContext(), LinkUtil.BOLUM_ID, bolumList.get(0).getId());
                     startActivity(new Intent(this, OgrenciDashboardActivity.class));

@@ -40,6 +40,8 @@
     <string name="staj_degerlendir">STAJI KAYDET</string>
     <string name="profile">Profil</string>
     <string name="changeSave">Değişiklikleri Kaydet</string>
+    <string name="staj_onay_bekleyen">Onay Bekleyenler</string>
+    <string name="staj_onaylananlar">Onaylananlar</string>
 
     <string-array name="staj_deger">
         <item>5</item>
