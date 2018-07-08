@@ -122,7 +122,10 @@ public class MainActivity extends AppCompatActivity
                     /**
                      * TODO : Personel stajı
                      */
-                    Toast.makeText(this, "Personel Girişi", Toast.LENGTH_SHORT).show();
+                    JSONArray firmalarArray = info.getJSONArray("firmalar");
+                    JSONObject object = firmalarArray.getJSONObject(0);
+                    SharedPrefsUtils.setIntegerPreference(this, LinkUtil.USER_ID, object.getInt("firma_id"));
+                    startActivity(new Intent(this, PersonelActivity.class));
                 }
                 SharedPrefsUtils.setIntegerPreference(getApplicationContext(), LinkUtil.RUTBE, rutbe);
             }else{

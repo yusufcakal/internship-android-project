@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".OgrenciDashboardActivity" />
         <activity android:name=".FirmaDashboardActivity" />
+        <activity android:name=".PersonelActivity"></activity>
     </application>
 
 </manifest>

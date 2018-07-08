@@ -90,6 +90,7 @@ public class PersonelEkleFragment extends Fragment implements
 
     @Override
     public void onSuccess(String result) {
+
         try {
             JSONObject jsonObject = new JSONObject(result);
             boolean resultFlag = jsonObject.getBoolean("result");

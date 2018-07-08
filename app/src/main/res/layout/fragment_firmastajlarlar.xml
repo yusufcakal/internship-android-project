@@ -9,7 +9,9 @@
         android:divider="@null"
         android:dividerHeight="0dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_bar"
+        />
 
     <com.eightbitlab.bottomnavigationbar.BottomNavigationBar
         android:id="@+id/bottom_bar"
